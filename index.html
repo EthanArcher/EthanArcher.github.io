@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dinner Builder</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <section class="intro">
+        <header>
+          <h1>Dinner Builder</h1>
+        </header>
+      </section>
+
+      <!-- Section -->
+      <section id="meal selection">
+        <header>
+          <h2>Meal Selection</h2>
+        </header>
+        <div class="content">
+          <p>Select the dinners you'd like to make this week to generate the shopping list.</p>
+
+          <h2>Dinner Options</h2>
+          <form id="dinnerForm">
+            <div class="field half">
+              <input type="checkbox" id="OrangeChicken" name="dinner" value="Orange Chicken and Jasmine Rice" />
+              <label for="OrangeChicken">Orange Chicken and Jasmine Rice</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="PorkAndAppleBurge" name="dinner" value="Pork & Apple Burger" />
+              <label for="PorkAndAppleBurge">Pork & Apple Burger</label>
+            </div>
+          </form>
+
+          <div id="shoppingList" class="shopping-list" style="display: none"></div>
+        </div>
+      </section>
+
+      <!-- Copyright -->
+      <div class="copyright">&copy; All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/generateShoppingList.js"></script>
+  </body>
+</html>

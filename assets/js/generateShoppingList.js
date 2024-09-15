@@ -27,6 +27,17 @@ const dinnerIngredients = {
     { name: "Rocket", quantity: 1, unit: "pcs" },
     { name: "Apple & Sage Jelly", quantity: 30, unit: "g" },
   ],
+  "Prince Harry's Chicken Pie": [
+    { name: "Potato", quantity: 250, unit: "g" },
+    { name: "Onion", quantity: 1, unit: "pcs" },
+    { name: "Mushrooms", quantity: 1, unit: "pcs" },
+    { name: "Carrot", quantity: 1, unit: "pcs" },
+    { name: "Garlic Clove", quantity: 2, unit: "pcs" },
+    { name: "Panko Breadcrumbs", quantity: 30, unit: "g" },
+    { name: "Chicken Breast", quantity: 280, unit: "g" },
+    { name: "Chicken Stock", quantity: 1, unit: "pcs" },
+    { name: "Creme Fraiche", quantity: 150, unit: "g" },
+  ],
 };
 
 // Function to generate the shopping list

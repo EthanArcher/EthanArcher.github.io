@@ -1,44 +1,4 @@
-const dinnerIngredients = {
-  "Orange Chicken and Jasmine Rice": [
-    { name: "Jasmine Rice", quantity: 150, unit: "g" },
-    { name: "Orange", quantity: 1, unit: "pcs" },
-    { name: "Green Beans", quantity: 80, unit: "g" },
-    { name: "Bell Pepper", quantity: 1, unit: "pcs" },
-    { name: "Garlic Clove", quantity: 2, unit: "pcs" },
-    { name: "Chicken Thigh", quantity: 260, unit: "g" },
-    { name: "Cornflour", quantity: 20, unit: "g" },
-    { name: "Honey", quantity: 15, unit: "ml" },
-    { name: "Ginger Puree", quantity: 15, unit: "g" },
-    { name: "Soy Sauce", quantity: 25, unit: "ml" },
-    { name: "Rice Vinegar", quantity: 15, unit: "ml" },
-    { name: "Tomato Ketchup", quantity: 10, unit: "g" },
-    { name: "Plain Flour", quantity: 5, unit: "g" },
-  ],
-  "Pork & Apple Burger": [
-    { name: "Rosemary", quantity: 1, unit: "pcs" },
-    { name: "Potato", quantity: 250, unit: "g" },
-    { name: "Pork Mince", quantity: 250, unit: "g" },
-    { name: "Panko Breadcrumbs", quantity: 10, unit: "g" },
-    { name: "Cheddar Cheese", quantity: 30, unit: "g" },
-    { name: "Burger Bun", quantity: 2, unit: "pcs" },
-    { name: "Honey", quantity: 15, unit: "ml" },
-    { name: "Lemon", quantity: 1, unit: "pcs" },
-    { name: "Olive Oil", quantity: 30, unit: "ml" },
-    { name: "Rocket", quantity: 1, unit: "pcs" },
-    { name: "Apple & Sage Jelly", quantity: 30, unit: "g" },
-  ],
-  "Prince Harry's Chicken Pie": [
-    { name: "Potato", quantity: 250, unit: "g" },
-    { name: "Onion", quantity: 1, unit: "pcs" },
-    { name: "Mushrooms", quantity: 1, unit: "pcs" },
-    { name: "Carrot", quantity: 1, unit: "pcs" },
-    { name: "Garlic Clove", quantity: 2, unit: "pcs" },
-    { name: "Panko Breadcrumbs", quantity: 30, unit: "g" },
-    { name: "Chicken Breast", quantity: 280, unit: "g" },
-    { name: "Chicken Stock", quantity: 1, unit: "pcs" },
-    { name: "Creme Fraiche", quantity: 150, unit: "g" },
-  ],
-};
+import { MEALS } from '../resources/ingredients.js'
 
 // Function to generate the shopping list
 function generateShoppingList() {
@@ -64,7 +24,7 @@ function generateShoppingList() {
 
   // Collect and sum ingredients for the selected dinners
   selectedDinners.forEach((dinner) => {
-    dinnerIngredients[dinner].forEach((ingredient) => {
+    MEALS[dinner].forEach((ingredient) => {
       const key = `${ingredient.name} (${ingredient.unit})`;
       if (shoppingList[key]) {
         // Sum the quantities if the ingredient is already in the list

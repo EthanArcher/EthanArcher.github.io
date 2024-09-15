@@ -18,7 +18,6 @@
         </header>
       </section>
 
-      <!-- Section -->
       <section id="meal selection">
         <header>
           <h2>Meal Selection</h2>
@@ -28,7 +27,16 @@
 
           <h2>Dinner Options</h2>
           <form id="dinnerForm">
+            <!-- Chicken Meals -->
             <h3>Chicken</h3>
+            <div class="field half">
+              <input type="checkbox" id="HoisinStickyBakedChickenThighs" name="dinner" value="Hoisin Sticky Baked Chicken Thighs" />
+              <label for="HoisinStickyBakedChickenThighs">Hoisin Sticky Baked Chicken Thighs</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="MangoChickenWraps" name="dinner" value="Mango Chicken Wraps" />
+              <label for="MangoChickenWraps">Mango Chicken Wraps</label>
+            </div>
             <div class="field half">
               <input type="checkbox" id="OrangeChicken" name="dinner" value="Orange Chicken and Jasmine Rice" />
               <label for="OrangeChicken">Orange Chicken and Jasmine Rice</label>
@@ -37,12 +45,81 @@
               <input type="checkbox" id="ChickenPie" name="dinner" value="Prince Harry's Chicken Pie" />
               <label for="ChickenPie">Prince Harry's Chicken Pie</label>
             </div>
+            <div class="field half">
+              <input type="checkbox" id="SmokeyBBQChickenAndBlackbeanLoadedWedges" name="dinner" value="Smokey BBQ Chicken and Blackbean Loaded Wedges" />
+              <label for="SmokeyBBQChickenAndBlackbeanLoadedWedges">Smokey BBQ Chicken and Blackbean Loaded Wedges</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="SweetAndSourStyleChicken" name="dinner" value="Sweet and Sour Style Chicken" />
+              <label for="SweetAndSourStyleChicken">Sweet and Sour Style Chicken</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="ThymeRoastChicken" name="dinner" value="Thyme Roast Chicken" />
+              <label for="ThymeRoastChicken">Thyme Roast Chicken</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="YellowThaiStyleChickenNoodles" name="dinner" value="Yellow Thai Style Chicken Noodles" />
+              <label for="YellowThaiStyleChickenNoodles">Yellow Thai Style Chicken Noodles</label>
+            </div>
 
             <br />
+            <!-- Port Meals -->
             <h3>Pork</h3>
             <div class="field half">
               <input type="checkbox" id="PorkAndAppleBurger" name="dinner" value="Pork & Apple Burger" />
               <label for="PorkAndAppleBurger">Pork & Apple Burger</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="RoastPotatoBaconAndCrispyKaleSalad" name="dinner" value="Roast Potato, Bacon and Crispy Kale Salad" />
+              <label for="RoastPotatoBaconAndCrispyKaleSalad">Roast Potato, Bacon and Crispy Kale Salad</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="SausageAndTomatoPestoPasta" name="dinner" value="Sausage and Tomato Pesto Pasta" />
+              <label for="SausageAndTomatoPestoPasta">Sausage and Tomato Pesto Pasta</label>
+            </div>
+
+            <br />
+            <!-- Beef Meals -->
+            <h3>Beef</h3>
+            <div class="field half">
+              <input type="checkbox" id="BBQBeefLoadedWedges" name="dinner" value="BBQ Beef Loaded Wedges" />
+              <label for="BBQBeefLoadedWedges">BBQ Beef Loaded Wedges</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="SesameBeefStirFry" name="dinner" value="Sesame Beef Stir Fry" />
+              <label for="SesameBeefStirFry">Sesame Beef Stir Fry</label>
+            </div>
+
+            <br />
+            <!-- Fish Meals -->
+            <h3>Fish</h3>
+            <div class="field half">
+              <input type="checkbox" id="TeriyakiSalmonPokeStyleBowl" name="dinner" value="Teriyaki Salmon Poke Style Bowl" />
+              <label for="TeriyakiSalmonPokeStyleBowl">Teriyaki Salmon Poke Style Bowl</label>
+            </div>
+
+            <br />
+            <!-- Vegetarian Meals -->
+            <h3>Vegetarian</h3>
+            <div class="field half">
+              <input type="checkbox" id="RigatoniCaprese" name="dinner" value="Rigatoni Caprese" />
+              <label for="RigatoniCaprese">Rigatoni Caprese</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="RoastedSweetPotatoAndKidneyBeanChilli" name="dinner" value="Roasted Sweet Potato and Kidney Bean Chilli" />
+              <label for="RoastedSweetPotatoAndKidneyBeanChilli">Roasted Sweet Potato and Kidney Bean Chilli</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="VeggieLaksaSoup" name="dinner" value="Veggie Laksa Soup" />
+              <label for="VeggieLaksaSoup">Veggie Laksa Soup</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="VeggieMoussaka" name="dinner" value="Veggie Moussaka" />
+              <label for="VeggieMoussaka">Veggie Moussaka</label>
+            </div>
+            <div class="field half">
+              <input type="checkbox" id="WelshRarebitJackyP" name="dinner" value="Welsh Rarebit Jacky-P" />
+              <label for="WelshRarebitJackyP">Welsh Rarebit Jacky-P</label>
             </div>
           </form>
 
@@ -61,6 +138,6 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/generateShoppingList.js"></script>
+    <script type="module" src="assets/js/generateShoppingList.js"></script>
   </body>
 </html>

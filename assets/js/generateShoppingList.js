@@ -11,17 +11,6 @@ function generateShoppingList() {
     selectedDinners.add(input.value);
   });
 
-  // Get shopping list container
-  const shoppingListDiv = document.getElementById("shoppingList");
-
-  // Check if any dinners are selected
-  if (selectedDinners.size === 0) {
-    // No dinners selected, hide the shopping list
-    shoppingListDiv.style.display = "none";
-    shoppingListDiv.innerHTML = ""; // Clear the list
-    return;
-  }
-
   // Collect and sum ingredients for the selected dinners
   selectedDinners.forEach((dinner) => {
     MEALS[dinner].forEach((ingredient) => {
@@ -36,17 +25,30 @@ function generateShoppingList() {
     });
   });
 
-  // Display the shopping list sorted alphabetically by ingredient name
-  shoppingListDiv.innerHTML = `
-      <h2>Shopping List</h2>
-      <ul>${Object.keys(shoppingList)
+  // Display the selected meals
+  const selectedMealsDiv = document.getElementById("selectedMeals");
+  const shoppingListDiv = document.getElementById("shoppingList");
+
+  if (selectedDinners.size > 0) {
+    selectedMealsDiv.innerHTML = `
+        <h2>Selected Meals</h2>
+        <ul>${Array.from(selectedDinners)
+        .map((meal) => `<li>${meal}</li>`)
+        .join("")}</ul>
+      `;
+
+    shoppingListDiv.innerHTML = `
+        <h2>Shopping List</h2>
+        <ul>${Object.keys(shoppingList)
         .sort()
         .map((key) => `<li>${key}: ${shoppingList[key]}</li>`)
         .join("")}</ul>
-    `;
+     `;
 
-  // Show the shopping list
-  shoppingListDiv.style.display = "block";
+  } else {
+    selectedMealsDiv.innerHTML = ""; // Clear if no meals are selected
+    shoppingListDiv.innerHTML = ""; // Clear if no meals are selected
+  }
 }
 
 // Add change event listeners to the checkboxes

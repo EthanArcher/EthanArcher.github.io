@@ -1,4 +1,4 @@
-import { MEALS } from '../resources/ingredients.js'
+import { MEALS, INGREDIENT_AISLES } from "../resources/ingredients.js";
 
 // Function to generate the shopping list
 function generateShoppingList() {
@@ -14,15 +14,33 @@ function generateShoppingList() {
   // Collect and sum ingredients for the selected dinners
   selectedDinners.forEach((dinner) => {
     MEALS[dinner].forEach((ingredient) => {
-      const key = `${ingredient.name} (${ingredient.unit})`;
+      const key = ingredient.name;
+      const aisle = INGREDIENT_AISLES[ingredient.name];
       if (shoppingList[key]) {
-        // Sum the quantities if the ingredient is already in the list
-        shoppingList[key] += ingredient.quantity;
+        // Update the quantity if the ingredient already exists
+        const existing = shoppingList[key];
+        shoppingList[key] = {
+          name: ingredient.name,
+          quantity: existing.quantity + ingredient.quantity,
+          unit: ingredient.unit,
+          aisle: aisle,
+        };
       } else {
-        // Add the ingredient to the list if it's not there
-        shoppingList[key] = ingredient.quantity;
+        shoppingList[key] = {
+          ...ingredient,
+          aisle: aisle,
+        };
       }
     });
+  });
+
+  const aisleGroups = {};
+  Object.values(shoppingList).forEach((ingredient) => {
+    console.log(ingredient)
+    if (!aisleGroups[ingredient.aisle]) {
+      aisleGroups[ingredient.aisle] = [];
+    }
+    aisleGroups[ingredient.aisle].push(ingredient);
   });
 
   // Display the selected meals
@@ -33,18 +51,27 @@ function generateShoppingList() {
     selectedMealsDiv.innerHTML = `
         <h2>Selected Meals</h2>
         <ul>${Array.from(selectedDinners)
-        .map((meal) => `<li>${meal}</li>`)
-        .join("")}</ul>
+          .sort()
+          .map((meal) => `<li>${meal}</li>`)
+          .join("")}</ul>
       `;
 
     shoppingListDiv.innerHTML = `
-        <h2>Shopping List</h2>
-        <ul>${Object.keys(shoppingList)
-        .sort()
-        .map((key) => `<li>${key}: ${shoppingList[key]}</li>`)
-        .join("")}</ul>
-     `;
-
+      <h2>Shopping List</h2>
+      ${Object.keys(aisleGroups)
+        .sort() // Sort aisles alphabetically
+        .map(
+          (aisle) => `
+          <h3>${aisle}</h3>
+          <ul>
+            ${aisleGroups[aisle]
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((item) => `<li>${item.name}: ${item.quantity} ${item.unit} </li>`).join("")}
+          </ul>
+        `
+        )
+        .join("")}
+    `;
   } else {
     selectedMealsDiv.innerHTML = ""; // Clear if no meals are selected
     shoppingListDiv.innerHTML = ""; // Clear if no meals are selected

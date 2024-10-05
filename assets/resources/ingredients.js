@@ -745,7 +745,7 @@ export const MEALS = {
     { name: "Mayonnaise", quantity: 2, unit: "tbsp" }
   ],
   "Chicken in Creamy Peppercorn Sauce": [
-    { name: "Carrots", quantity: 250, unit: "g" },
+    { name: "Carrot", quantity: 250, unit: "g" },
     { name: "Potatoes", quantity: 450, unit: "g" },
     { name: "Chicken Breast", quantity: 2, unit: "pcs" },
     { name: "Echalion Shallot", quantity: 1, unit: "pcs" },

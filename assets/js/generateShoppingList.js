@@ -14,7 +14,7 @@ function generateShoppingList() {
   // Collect and sum ingredients for the selected dinners
   selectedDinners.forEach((dinner) => {
     MEALS[dinner].forEach((ingredient) => {
-      const key = ingredient.name;
+      const key = `${ingredient.name}-${ingredient.unit}`;
       const aisle = INGREDIENT_AISLES[ingredient.name];
       if (shoppingList[key]) {
         // Update the quantity if the ingredient already exists

@@ -46,6 +46,7 @@ function generateShoppingList() {
   // Display the selected meals
   const selectedMealsDiv = document.getElementById("selectedMeals");
   const shoppingListDiv = document.getElementById("shoppingList");
+  const copyShoppingButton = document.getElementById("copyShoppingButton");
 
   if (selectedDinners.size > 0) {
     selectedMealsDiv.innerHTML = `
@@ -72,9 +73,13 @@ function generateShoppingList() {
         )
         .join("")}
     `;
+
+    copyShoppingButton.style.display = 'inline-block'; // Show the button
+
   } else {
     selectedMealsDiv.innerHTML = ""; // Clear if no meals are selected
     shoppingListDiv.innerHTML = ""; // Clear if no meals are selected
+    copyShoppingButton.style.display = 'none'; // Hide the button
   }
 }
 

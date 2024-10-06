@@ -268,6 +268,18 @@
           </div>
 
           <br />
+          <!-- Pizza -->
+          <h3>Pizza</h3>
+          <div class="field half">
+            <input type="checkbox" id="PizzaDough" name="dinner" value="Pizza Dough" />
+            <label for="PizzaDough">Pizza Dough</label>
+          </div>
+          <div class="field half">
+            <input type="checkbox" id="PizzaSauce" name="dinner" value="Pizza Sauce" />
+            <label for="PizzaSauce">Pizza Sauce</label>
+          </div>
+
+          <br />
           <!-- Desserts -->
           <h3>Dessert</h3>
           <div class="field half">
@@ -282,8 +294,17 @@
 
         </form>
 
-        <div id="selectedMeals"></div>
-        <div id="shoppingList"></div>
+        <div class="content">
+          <a href="https://joesdaily.com/food-drink/hellofresh-spice-blends-how-to-make-them">Spice blends</a>
+        </div>
+
+        <div id="shopping-list-output">
+          <div id="selectedMeals"></div>
+          <div id="shoppingList"></div>
+        </div>
+
+        <!-- Copy shopping list button -->
+        <input class="button primary" id="copyShoppingButton" onclick=copyShopping() value="Copy Shopping List" style="display: none;"></input>
 
       </div>
     </section>
@@ -300,6 +321,8 @@
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
   <script type="module" src="assets/js/generateShoppingList.js"></script>
+  <script src="assets/js/copyShopping.js"></script>
+
 </body>
 
 </html>

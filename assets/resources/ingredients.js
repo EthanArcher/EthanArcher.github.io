@@ -134,6 +134,7 @@ export const INGREDIENT_AISLES = {
   "Mango Chutney": "5. Food Cupboard",
   "Mayonnaise": "5. Food Cupboard",
   "Middle Eastern Style Spice Mix": "5. Food Cupboard",
+  "Naan Bread": "5. Food Cupboard",
   "Olive Oil": "5. Food Cupboard",
   "Onion Marmalade": "5. Food Cupboard",
   "Panko Breadcrumbs": "5. Food Cupboard",
@@ -723,7 +724,8 @@ export const MEALS = {
     { name: "Toasted Flaked Almonds", quantity: 15, unit: "g" },
     { name: "Chilli Flakes", quantity: 1, unit: "g" },
     { name: "Sugar", quantity: 1, unit: "tsp" },
-    { name: "Butter", quantity: 20, unit: "g" }
+    { name: "Butter", quantity: 20, unit: "g" },
+    { name: "Naan Bread", quantity: 2, unit: "pcs" }
   ],
   "Cajun Chicken and Tomato Pasta": [
     { name: "Cajun Spice Mix", quantity: 1, unit: "pcs" },

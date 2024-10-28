@@ -85,6 +85,7 @@ export const INGREDIENT_AISLES = {
   "Low Fat Natural Yoghurt": "4. Dairy",
   "Mature Cheddar Cheese": "4. Dairy",
   "Mozzarella": "4. Dairy",
+  "Sour Cream": "4. Dairy",
   "Unsalted Butter": "4. Dairy",
 
   "Apple & Sage Jelly": "5. Food Cupboard",
@@ -278,6 +279,7 @@ export const MEALS = {
     { name: "Bell Pepper", quantity: 1, unit: "pcs" },
     { name: "Carrot", quantity: 1, unit: "pcs" },
     { name: "Potatoes", quantity: 450, unit: "g" },
+    { name: "Sour Cream", quantity: 150, unit: "ml" },
   ],
   "Sausage and Tomato Pesto Pasta": [
     { name: "Broccoli", quantity: 1, unit: "pcs" },

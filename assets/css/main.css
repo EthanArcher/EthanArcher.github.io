@@ -2524,21 +2524,24 @@ input, select, textarea {
 			}
 
 /* Meal preview */
+
     /* Card container styling */
-    .meal-card {
-		width: 300px;
+	.meal-card {
+		width: 300px; 
+		height: 300px; 
 		background-color: #fff;
 		border-radius: 10px;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-		overflow: hidden;
+		overflow: hidden; /* Ensures content doesn't overflow outside the fixed size */
 		text-align: center;
 		margin: 20px;
 	}
-  
+	
 	/* Image styling */
 	.meal-card img {
-		width: 100%;
-		height: auto;
+		width: 100%;  /* Ensure the image width fills the card */
+		height: 200px; /* Set a fixed height for the image */
+		object-fit: cover; /* Ensures the image covers the assigned area without distortion */
 		display: block;
 	}
   

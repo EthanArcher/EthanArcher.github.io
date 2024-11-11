@@ -1,15 +1,21 @@
 import { MEALS, INGREDIENT_AISLES } from "../resources/ingredients.js";
 
 // Function to generate the shopping list
-function generateShoppingList() {
+export function generateShoppingList() {
   const form = document.getElementById("dinnerForm");
   const selectedDinners = new Set();
   const shoppingList = {};
 
+  const mealCards = document.querySelectorAll('.meal-card');
+
   // Collect selected dinners
-  form.querySelectorAll('input[name="dinner"]:checked').forEach((input) => {
-    selectedDinners.add(input.value);
-  });
+  mealCards.forEach(card => {
+    if (card.classList.contains('selected')) {
+      const mealValue = card.getAttribute('data-value');
+      console.log(mealValue);
+      selectedDinners.add(mealValue);
+    }
+  })
 
   // Collect and sum ingredients for the selected dinners
   selectedDinners.forEach((dinner) => {

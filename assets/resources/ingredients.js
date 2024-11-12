@@ -317,6 +317,19 @@ export const MEALS = {
     { name: "Thai Style Spice Blend", quantity: 1, unit: "sachet" },
     { name: "Diced Chicken Breast", quantity: 240, unit: "g" },
   ],
+  "Chicken and Broccoli Stir Fry": [
+    { name: "Soy Sauce", quantity: 25, unit: "g" },
+    { name: "Broccoli", quantity: 0.5, unit: "pcs" },
+    { name: "Diced Chicken Thigh", quantity: 260, "unit": "g" },
+    { name: "Garlic Clove", quantity: 2, unit: "pcs" },
+    { name: "Red Chilli", quantity: 0.5, unit: "pcs" },
+    { name: "Spring Onion", quantity: 1, unit: "pcs" },
+    { name: "Egg Noodle Nest", quantity: 2, unit: "pcs" },
+    { name: "Lime", quantity: 0.5, unit: "pcs" },
+    { name: "Peanut Butter", quantity: 1, unit: "tbsp" },
+    { name: "Bell Pepper", quantity: 1, unit: "pcs" },
+    { name: "Ketjap Manis", quantity: 25, unit: "g" }
+  ],
   "Roast Potato, Bacon and Crispy Kale Salad": [
     { name: "Potatoes", quantity: 450, unit: "g" },
     { name: "Red Onion", quantity: 1, unit: "pcs" },

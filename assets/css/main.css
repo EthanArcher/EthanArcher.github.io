@@ -2527,8 +2527,7 @@ input, select, textarea {
 
     /* Card container styling */
 	.meal-card {
-		width: 90px; 
-		height: 130px;
+		width: 90%; 
 		background-color: #fff;
 		border-radius: 10px;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -2538,12 +2537,14 @@ input, select, textarea {
 	}
 	
 	/* Image styling */
+
+
 	.meal-card img {
 		width: 100%;  /* Ensure the image width fills the card */
 		height: 90px; /* Set a fixed height for the image */
 		object-fit: cover; /* Ensures the image covers the assigned area without distortion */
 		display: block;
-	}
+	   }
   
 	/* Title styling */
 	.meal-card .meal-title {

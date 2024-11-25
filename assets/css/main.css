@@ -2527,29 +2527,31 @@ input, select, textarea {
 
     /* Card container styling */
 	.meal-card {
-		width: 300px; 
+		width: 90px; 
+		height: 130px;
 		background-color: #fff;
 		border-radius: 10px;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 		overflow: hidden; /* Ensures content doesn't overflow outside the fixed size */
 		text-align: center;
-		margin: 20px;
+		margin: 2px;
 	}
 	
 	/* Image styling */
 	.meal-card img {
 		width: 100%;  /* Ensure the image width fills the card */
-		height: 200px; /* Set a fixed height for the image */
+		height: 90px; /* Set a fixed height for the image */
 		object-fit: cover; /* Ensures the image covers the assigned area without distortion */
 		display: block;
 	}
   
 	/* Title styling */
 	.meal-card .meal-title {
-		font-size: 1.2em;
+		font-size: 0.7em;
 		font-weight: bold;
-		padding: 15px;
+		padding: 1px;
 		color: #333;
+		line-height: 1.0; /* Adjust this value as needed */
 	}
 
 	/* Selected state for the card */
@@ -3917,3 +3919,10 @@ input, select, textarea {
 		}
 
 	}
+
+	/* CSS to create the 3x3 grid */
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+	grid-gap: 2px; /* Adjust spacing between grid items */
+  }

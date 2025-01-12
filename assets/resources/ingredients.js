@@ -465,6 +465,7 @@ export const MEALS = {
     { name: "Chilli Flakes", quantity: 1, unit: "tsp" },
     { name: "Aubergine", quantity: 1, unit: "pcs" },
     { name: "Garlic Clove", quantity: 1, unit: "pcs" },
+    { name: "Echalion Shallot", quantity: 1, unit: "pcs" },
   ],
   "Beef Fried Rice": [
     { name: "Basmati Rice", quantity: 150, unit: "g" },

@@ -1023,6 +1023,7 @@ export const MEALS = {
     { name: "Sun-Dried Tomato Paste", quantity: 25, unit: "g" },
     { name: "Chicken Stock", quantity: 1, unit: "pcs" },
     { name: "Grated Hard Italian Style Cheese", quantity: 25, unit: "g" },
+    { name: "Onion", quantity: 1, unit: "pcs" },
   ],
   "Chipotle Beef Rigatoni": [
     { name: "Garlic Clove", quantity: 1, unit: "pcs" },

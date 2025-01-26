@@ -66,7 +66,7 @@ export function generateShoppingList() {
     shoppingListDiv.innerHTML = `
       <h2>Shopping List</h2>
       ${Object.keys(aisleGroups)
-        .sort() // Sort aisles alphabetically
+        .sort((a, b) => parseInt(a, 10) - parseInt(b, 10)) // Sort aisles numerically
         .map(
           (aisle) => `
           <h3>${aisle}</h3>

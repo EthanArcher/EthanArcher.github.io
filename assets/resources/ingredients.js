@@ -200,6 +200,7 @@ export const INGREDIENT_AISLES = {
   "Tomato Ketchup": "5. Food Cupboard",
   "Tomato Passata": "5. Food Cupboard",
   "Tomato Puree": "5. Food Cupboard",
+  "Tortilla Chips": "5. Food Cupboard",
   "Vanilla Extract": "5. Food Cupboard",
   "Vegetable Stock": "5. Food Cupboard",
   "White Wine Vinegar": "5. Food Cupboard",
@@ -338,6 +339,7 @@ export const MEALS = {
     { name: "Red Kidney Beans", quantity: 1, unit: "can" },
     { name: "Tomato Passata", quantity: 1, unit: "carton" },
     { name: "BBQ Sauce", quantity: 2, unit: "tbsp" },
+    { name: "Onion", quantity: 1, unit: "pcs" },
   ],
   "Yellow Thai Style Chicken Noodles": [
     { name: "Egg Noodle Nest", quantity: 2, unit: "pcs" },
@@ -1346,6 +1348,7 @@ export const MEALS = {
     { name: "Finely Chopped Tomatoes", quantity: 1, unit: "can" },
     { name: "Beef Stock", quantity: 1, unit: "pcs" },
     { name: "Mature Cheddar Cheese", quantity: 30, unit: "g" }
+    { name: "Tortilla Chips", quantity: 1, unit: "bag" }
   ],
   "Quick & Sticky Chicken": [
     { name: "Basmati Rice", quantity: 150, unit: "g" },

@@ -1347,8 +1347,8 @@ export const MEALS = {
     { name: "Mexican Spice", quantity: 2, unit: "tsp" },
     { name: "Finely Chopped Tomatoes", quantity: 1, unit: "can" },
     { name: "Beef Stock", quantity: 1, unit: "pcs" },
-    { name: "Mature Cheddar Cheese", quantity: 30, unit: "g" }
-    { name: "Tortilla Chips", quantity: 1, unit: "bag" }
+    { name: "Mature Cheddar Cheese", quantity: 30, unit: "g" },
+    { name: "Tortilla Chips", quantity: 1, unit: "bags" }
   ],
   "Quick & Sticky Chicken": [
     { name: "Basmati Rice", quantity: 150, unit: "g" },

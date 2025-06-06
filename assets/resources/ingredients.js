@@ -578,6 +578,7 @@ export const MEALS = {
     { name: "Chicken Breast", quantity: 210, unit: "g" },
     { name: "Chicken Stock", quantity: 1, unit: "pcs" },
     { name: "Tomato Passata", quantity: 1, unit: "carton" },
+    { name: "Finely Chopped Tomatoes", quantity: 1, unit: "can" },
     { name: "Dried Oregano", quantity: 1, unit: "tsp" },
     { name: "Rigatoni Pasta", quantity: 180, unit: "g" },
     { name: "Creme Fraiche", quantity: 150, unit: "g" },

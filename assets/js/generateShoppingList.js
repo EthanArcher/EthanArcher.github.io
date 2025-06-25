@@ -57,24 +57,30 @@ export function generateShoppingList() {
   if (selectedDinners.size > 0) {
     selectedMealsDiv.innerHTML = `
         <h2>Selected Meals</h2>
+        </br>
         <ul>${Array.from(selectedDinners)
           .sort()
-          .map((meal) => `<li>${meal}</li>`)
-          .join("")}</ul>
+          .map((meal) => `<li>- ${meal}</li>`)
+          .join("")}
+        </ul>
+        </br>
       `;
 
     shoppingListDiv.innerHTML = `
       <h2>Shopping List</h2>
+      </br>
       ${Object.keys(aisleGroups)
         .sort((a, b) => parseInt(a, 10) - parseInt(b, 10)) // Sort aisles numerically
         .map(
           (aisle) => `
           <h3>${aisle}</h3>
+          </br>
           <ul>
             ${aisleGroups[aisle]
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .map((item) => `<li>${item.name}: ${item.quantity} ${item.unit} </li>`).join("")}
           </ul>
+          </br>
         `
         )
         .join("")}

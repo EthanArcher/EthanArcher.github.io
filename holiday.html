@@ -13,32 +13,9 @@
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    #map {
-      width: 100vw;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    }
-    #controls {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 1000;
-      background: rgba(255,255,255,0.9);
-      padding: 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+    body { margin:0; padding:0; }
+    #map { width: 100%; height: 95vh; }
+    #controls { padding: 10px; }
   </style>
 </head>
 <body>
@@ -104,16 +81,66 @@
 
   // 08 Sept 2025
   { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "8 September 2025" },
-  { coords: [52.8867, -117.5228], name: "Maligne Lake", date: "8 September 2025" },
-  { coords: [52.8239, -117.5992], name: "Medicine Lake", date: "8 September 2025" },
-  { coords: [52.8867, -117.5228], name: "Maligne Lake (Boat to Spirit Island)", date: "8 September 2025" },
-  { coords: [52.6222, -117.4858], name: "Spirit Island", date: "8 September 2025" },
-  { coords: [52.8960, -117.7100], name: "Maligne Canyon", date: "8 September 2025" },
-  { coords: [52.8945, -117.7067], name: "Maligne Canyon Bridges Walk", date: "8 September 2025" },
+  { coords: [52.8730, -118.0866], name: "Jasper SkyTram", date: "8 September 2025" },
+  { coords: [52.8333, -118.0833], name: "Valley of the Five Lakes", date: "8 September 2025" },
+  { coords: [52.9058, -118.0583], name: "Pyramid Lake", date: "8 September 2025" },
+  { coords: [52.8731, -118.0826], name: "Jasper Brewing Co", date: "8 September 2025" },
+  { coords: [52.8750, -118.0833], name: "Jasper Planetarium", date: "8 September 2025" },
   { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "8 September 2025" },
 
   // 09 Sept 2025
-  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "9 September 2025" }
+  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "9 September 2025" },
+  { coords: [52.8867, -117.5228], name: "Maligne Lake", date: "9 September 2025" },
+  { coords: [52.8239, -117.5992], name: "Medicine Lake", date: "9 September 2025" },
+  { coords: [52.8867, -117.5228], name: "Maligne Lake (Boat to Spirit Island)", date: "9 September 2025" },
+  { coords: [52.6222, -117.4858], name: "Spirit Island", date: "9 September 2025" },
+  { coords: [52.8960, -117.7100], name: "Maligne Canyon", date: "9 September 2025" },
+  { coords: [52.8945, -117.7067], name: "Maligne Canyon Bridges Walk", date: "9 September 2025" },
+  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "9 September 2025" },
+
+  // 10 Sept 2025
+  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "10 September 2025" },
+  { coords: [53.1100, -119.2200], name: "Mount Robson", date: "10 September 2025" },
+  { coords: [53.0000, -119.0000], name: "Rearguard Falls", date: "10 September 2025" },
+  { coords: [51.6500, -120.0333], name: "Clearwater", date: "10 September 2025" },
+  { coords: [51.6739, -120.0336], name: "Spahats Falls", date: "10 September 2025" },
+  { coords: [50.6745, -120.3273], name: "DoubleTree Kamloops Hotel", date: "10 September 2025" },
+
+  // 11 Sept 2025
+  { coords: [50.6745, -120.3273], name: "DoubleTree Kamloops Hotel", date: "11 September 2025" },
+  { coords: [49.6100, -121.0500], name: "Falls Lake Trail, Coquihalla", date: "11 September 2025" },
+  { coords: [49.6066, -121.0511], name: "Zopkios Rest Area", date: "11 September 2025" },
+  { coords: [49.1578, -121.7522], name: "Bridal Falls Provincial Park", date: "11 September 2025" },
+  { coords: [49.1686, -122.5797], name: "Fort Langley National Historic Site", date: "11 September 2025" },
+  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "11 September 2025" },
+
+  // 12 Sept 2025
+  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "12 September 2025" },
+  { coords: [49.2827, -123.1156], name: "Medina Cafe", date: "12 September 2025" },
+  { coords: [49.3043, -123.1443], name: "Stanley Park", date: "12 September 2025" },
+  { coords: [49.2706, -123.1359], name: "Granville Island Public Market", date: "12 September 2025" },
+  { coords: [49.2700, -123.1340], name: "Liberty Distillery", date: "12 September 2025" },
+  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "12 September 2025" },
+
+  // 13 Sept 2025
+  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "13 September 2025" },
+  { coords: [49.2345, -123.1167], name: "VanDusen Botanical Garden", date: "13 September 2025" },
+  { coords: [49.2417, -123.1120], name: "Queen Elizabeth Park", date: "13 September 2025" },
+  { coords: [49.2796, -123.1066], name: "Chinatown", date: "13 September 2025" },
+  { coords: [49.2846, -123.1117], name: "Gastown Steam Clock", date: "13 September 2025" },
+  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "13 September 2025" },
+
+  // 14 Sept 2025
+  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "14 September 2025" },
+  { coords: [49.2836, -123.1066], name: "Gastown", date: "14 September 2025" },
+  { coords: [49.3429, -123.1149], name: "Capilano Suspension Bridge", date: "14 September 2025" },
+  { coords: [49.1947, -123.1792], name: "Vancouver Airport (YVR)", date: "14 September 2025" },
+
+  // 15 Sept 2025 - Travel Day
+  // (no locations, travel)
+
+  // 16 Sept 2025
+  { coords: [-37.0081, 174.7917], name: "Auckland Airport", date: "16 September 2025" }
 
 
 ];

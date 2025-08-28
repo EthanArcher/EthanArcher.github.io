@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Holiday Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    body { margin:0; padding:0; }
+    #map { width: 100%; height: 95vh; }
+    #controls { padding: 10px; }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <label for="daySelect">Select Day:</label>
+    <select id="daySelect">
+      <option value="all">Show All</option>
+    </select>
+  </div>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    var places = [
+  // 02 Sept 2025
+  { coords: [54.5970, -5.9301], name: "Belfast", date: "2 September 2025" },
+  { coords: [53.4213, -6.2701], name: "Dublin Airport", date: "2 September 2025" },
+  { coords: [51.1139, -114.0203], name: "Calgary Airport", date: "2 September 2025" },
+  { coords: [51.0461, -114.0572], name: "Sandman Signature Hotel Calgary", date: "2 September 2025" },
+
+  // 03 Sept 2025
+  { coords: [51.0461, -114.0572], name: "Sandman Signature Hotel Calgary", date: "3 September 2025" },
+  { coords: [51.1784, -115.5708], name: "Banff", date: "3 September 2025" },
+  { coords: [51.2000, -115.5833], name: "Vermillion Lake Viewpoint", date: "3 September 2025" },
+  { coords: [51.1517, -115.5633], name: "Banff Upper Hot Springs", date: "3 September 2025" },
+  { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "3 September 2025" },
+
+  // 04 Sept 2025
+  { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "4 September 2025" },
+  { coords: [51.6639, -116.5453], name: "Wapta Falls", date: "4 September 2025" },
+  { coords: [51.4425, -116.5286], name: "Emerald Lake", date: "4 September 2025" },
+  { coords: [51.3750, -116.2289], name: "Natural Bridge", date: "4 September 2025" },
+  { coords: [51.4963, -116.5236], name: "Takakkaw Falls", date: "4 September 2025" },
+  { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "4 September 2025" },
+
+  // 05 Sept 2025
+  { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "5 September 2025" },
+  { coords: [51.0955, -115.3269], name: "Ha Ling Peak Hike", date: "5 September 2025" },
+  { coords: [51.0890, -115.3590], name: "Canmore", date: "5 September 2025" },
+  { coords: [51.0963, -115.3080], name: "Upper Grassi Lake Trail", date: "5 September 2025" },
+  { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "5 September 2025" },
+
+  // 06 Sept 2025
+  { coords: [51.4421, -116.3250], name: "Herbert Lake", date: "6 September 2025" },
+  { coords: [51.6711, -116.4620], name: "Bow Lake", date: "6 September 2025" },
+  { coords: [51.7167, -116.5150], name: "Peyto Lake", date: "6 September 2025" },
+  { coords: [51.7230, -116.7408], name: "Mistaya Canyon", date: "6 September 2025" },
+  { coords: [52.2167, -117.2333], name: "Saskatchewan River Crossing", date: "6 September 2025" },
+  { coords: [52.2206, -117.2242], name: "Columbia Icefield", date: "6 September 2025" },
+  { coords: [52.3581, -117.5886], name: "Tangle Falls", date: "6 September 2025" },
+  { coords: [52.5114, -117.6461], name: "Sunwapta Falls", date: "6 September 2025" },
+  { coords: [52.6647, -117.8831], name: "Athabasca Falls", date: "6 September 2025" },
+  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "6 September 2025" },
+
+  // 07 Sept 2025
+  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "7 September 2025" },
+  { coords: [52.8730, -118.0866], name: "Jasper SkyTram", date: "7 September 2025" },
+  { coords: [52.8333, -118.0833], name: "Valley of the Five Lakes", date: "7 September 2025" },
+  { coords: [52.9058, -118.0583], name: "Pyramid Lake", date: "7 September 2025" },
+  { coords: [52.8731, -118.0826], name: "Jasper Brewing Co", date: "7 September 2025" },
+  { coords: [52.8750, -118.0833], name: "Jasper Planetarium", date: "7 September 2025" },
+  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "7 September 2025" },
+
+  // 08 Sept 2025
+  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "8 September 2025" },
+  { coords: [52.8867, -117.5228], name: "Maligne Lake", date: "8 September 2025" },
+  { coords: [52.8239, -117.5992], name: "Medicine Lake", date: "8 September 2025" },
+  { coords: [52.8867, -117.5228], name: "Maligne Lake (Boat to Spirit Island)", date: "8 September 2025" },
+  { coords: [52.6222, -117.4858], name: "Spirit Island", date: "8 September 2025" },
+  { coords: [52.8960, -117.7100], name: "Maligne Canyon", date: "8 September 2025" },
+  { coords: [52.8945, -117.7067], name: "Maligne Canyon Bridges Walk", date: "8 September 2025" },
+  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "8 September 2025" },
+
+  // 09 Sept 2025
+  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "9 September 2025" }
+
+
+];
+
+
+
+    // === Setup map ===
+    var map = L.map('map').setView([51, -115], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var routeLine; // keep reference to current polyline
+
+    // Fill day selector with unique dates
+    var uniqueDates = [...new Set(places.map(p => p.date))];
+    var daySelect = document.getElementById("daySelect");
+    uniqueDates.forEach(d => {
+      var opt = document.createElement("option");
+      opt.value = d;
+      opt.textContent = d;
+      daySelect.appendChild(opt);
+    });
+
+    // Function to render markers and route
+    function renderDay(filterDate) {
+      // clear existing markers and lines
+      map.eachLayer(layer => {
+        if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+          map.removeLayer(layer);
+        }
+      });
+
+      // re-add tile layer (since we removed it above)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
+      // filter places
+      var dayPlaces = places.filter(p => filterDate === "all" || p.date === filterDate);
+
+      // add markers
+      dayPlaces.forEach(place => {
+        L.marker(place.coords).addTo(map)
+          .bindPopup(`<b>${place.name}</b><br>${place.date}`);
+      });
+
+      // draw route line
+      if (dayPlaces.length > 1) {
+        routeLine = L.polyline(
+          dayPlaces.map(p => p.coords),
+          { color: "blue", weight: 3, opacity: 0.7 }
+        ).addTo(map);
+        map.fitBounds(routeLine.getBounds());
+      } else if (dayPlaces.length === 1) {
+        map.setView(dayPlaces[0].coords, 10);
+      }
+    }
+
+    // Event listener for dropdown
+    daySelect.addEventListener("change", () => renderDay(daySelect.value));
+
+    // Initial render (all days)
+    renderDay("all");
+  </script>
+</body>
+</html>

@@ -1,308 +1,331 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Holiday Map</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Dinner Builder" />
-  <link rel="apple-touch-icon" href="images/dinnerBuilderIcon.png" />
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-  <style>
-    body { margin:0; padding:0; }
-    #map { width: 100%; height: 95vh; }
-    #controls { padding: 10px; }
-  </style>
-</head>
-<body>
-  <div id="controls">
-    <label for="daySelect">Select Day:</label>
-    <select id="daySelect">
-      <option value="all">Show All</option>
-    </select>
-  </div>
-  <div id="map"></div>
+  <head>
+    <title>Holiday Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Dinner Builder" />
+    <link rel="apple-touch-icon" href="images/dinnerBuilderIcon.png" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        width: 100%;
+        height: 95vh;
+      }
+      #controls {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="controls">
+      <label for="daySelect">Select Day:</label>
+      <select id="daySelect">
+        <option value="all">Show All</option>
+      </select>
+    </div>
+    <div id="map"></div>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    var places = [
-  // 02 Sept 2025
-  { coords: [54.5970, -5.9301], name: "Belfast", date: "2 September 2025" },
-  { coords: [53.4213, -6.2701], name: "Dublin Airport", date: "2 September 2025" },
-  { coords: [51.1139, -114.0203], name: "Calgary Airport", date: "2 September 2025" },
-  { coords: [51.0461, -114.0572], name: "Sandman Signature Hotel Calgary", date: "2 September 2025" },
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      var places = [
+        // 02 Sept 2025
+        { coords: [54.597, -5.9301], name: "Belfast", date: "2 September 2025" },
+        { coords: [53.4213, -6.2701], name: "Dublin Airport", date: "2 September 2025" },
+        { coords: [51.1139, -114.0203], name: "Calgary Airport", date: "2 September 2025" },
+        { coords: [51.0461, -114.0572], name: "Sandman Signature Hotel Calgary", date: "2 September 2025" },
 
-  // 03 Sept 2025
-  { coords: [51.0461, -114.0572], name: "Sandman Signature Hotel Calgary", date: "3 September 2025" },
-  { coords: [51.1784, -115.5708], name: "Banff", date: "3 September 2025" },
-  { coords: [51.2000, -115.5833], name: "Vermillion Lake Viewpoint", date: "3 September 2025" },
-  { coords: [51.1517, -115.5633], name: "Banff Upper Hot Springs", date: "3 September 2025" },
-  { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "3 September 2025" },
+        // 03 Sept 2025
+        { coords: [51.0461, -114.0572], name: "Sandman Signature Hotel Calgary", date: "3 September 2025" },
+        { coords: [51.1784, -115.5708], name: "Banff", date: "3 September 2025" },
+        { coords: [51.2, -115.5833], name: "Vermillion Lake Viewpoint", date: "3 September 2025" },
+        { coords: [51.1517, -115.5633], name: "Banff Upper Hot Springs", date: "3 September 2025" },
+        { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "3 September 2025" },
 
-  // 04 Sept 2025
-  { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "4 September 2025" },
-  { coords: [51.6639, -116.5453], name: "Wapta Falls", date: "4 September 2025" },
-  { coords: [51.4425, -116.5286], name: "Emerald Lake", date: "4 September 2025" },
-  { coords: [51.3750, -116.2289], name: "Natural Bridge", date: "4 September 2025" },
-  { coords: [51.4963, -116.5236], name: "Takakkaw Falls", date: "4 September 2025" },
-  { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "4 September 2025" },
+        // 04 Sept 2025
+        { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "4 September 2025" },
+        { coords: [51.6639, -116.5453], name: "Wapta Falls", date: "4 September 2025" },
+        { coords: [51.4425, -116.5286], name: "Emerald Lake", date: "4 September 2025" },
+        { coords: [51.375, -116.2289], name: "Natural Bridge", date: "4 September 2025" },
+        { coords: [51.4963, -116.5236], name: "Takakkaw Falls", date: "4 September 2025" },
+        { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "4 September 2025" },
 
-  // 05 Sept 2025
-  { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "5 September 2025" },
-  { coords: [51.0955, -115.3269], name: "Ha Ling Peak Hike", date: "5 September 2025" },
-  { coords: [51.0890, -115.3590], name: "Canmore", date: "5 September 2025" },
-  { coords: [51.0963, -115.3080], name: "Upper Grassi Lake Trail", date: "5 September 2025" },
-  { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "5 September 2025" },
+        // 05 Sept 2025
+        { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "5 September 2025" },
+        { coords: [51.0955, -115.3269], name: "Ha Ling Peak Hike", date: "5 September 2025" },
+        { coords: [51.089, -115.359], name: "Canmore", date: "5 September 2025" },
+        { coords: [51.0963, -115.308], name: "Upper Grassi Lake Trail", date: "5 September 2025" },
+        { coords: [51.1784, -115.5708], name: "Banff Lounge and Spa", date: "5 September 2025" },
 
-  // 06 Sept 2025
-  { coords: [51.4421, -116.3250], name: "Herbert Lake", date: "6 September 2025" },
-  { coords: [51.6711, -116.4620], name: "Bow Lake", date: "6 September 2025" },
-  { coords: [51.7167, -116.5150], name: "Peyto Lake", date: "6 September 2025" },
-  { coords: [51.7230, -116.7408], name: "Mistaya Canyon", date: "6 September 2025" },
-  { coords: [52.2167, -117.2333], name: "Saskatchewan River Crossing", date: "6 September 2025" },
-  { coords: [52.2206, -117.2242], name: "Columbia Icefield", date: "6 September 2025" },
-  { coords: [52.3581, -117.5886], name: "Tangle Falls", date: "6 September 2025" },
-  { coords: [52.5114, -117.6461], name: "Sunwapta Falls", date: "6 September 2025" },
-  { coords: [52.6647, -117.8831], name: "Athabasca Falls", date: "6 September 2025" },
-  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "6 September 2025" },
+        // 06 Sept 2025
+        { coords: [51.4421, -116.325], name: "Herbert Lake", date: "6 September 2025" },
+        { coords: [51.6711, -116.462], name: "Bow Lake", date: "6 September 2025" },
+        { coords: [51.7167, -116.515], name: "Peyto Lake", date: "6 September 2025" },
+        { coords: [51.723, -116.7408], name: "Mistaya Canyon", date: "6 September 2025" },
+        { coords: [52.2167, -117.2333], name: "Saskatchewan River Crossing", date: "6 September 2025" },
+        { coords: [52.2206, -117.2242], name: "Columbia Icefield", date: "6 September 2025" },
+        { coords: [52.3581, -117.5886], name: "Tangle Falls", date: "6 September 2025" },
+        { coords: [52.5114, -117.6461], name: "Sunwapta Falls", date: "6 September 2025" },
+        { coords: [52.6647, -117.8831], name: "Athabasca Falls", date: "6 September 2025" },
+        { coords: [52.8734, -118.082], name: "Chateau Jasper Hotel", date: "6 September 2025" },
 
-  // 07 Sept 2025
-  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "7 September 2025" },
-  { coords: [52.8730, -118.0866], name: "Jasper SkyTram", date: "7 September 2025" },
-  { coords: [52.8333, -118.0833], name: "Valley of the Five Lakes", date: "7 September 2025" },
-  { coords: [52.9058, -118.0583], name: "Pyramid Lake", date: "7 September 2025" },
-  { coords: [52.8731, -118.0826], name: "Jasper Brewing Co", date: "7 September 2025" },
-  { coords: [52.8750, -118.0833], name: "Jasper Planetarium", date: "7 September 2025" },
-  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "7 September 2025" },
+        // 07 Sept 2025
+        { coords: [52.8734, -118.082], name: "Chateau Jasper Hotel", date: "7 September 2025" },
+        { coords: [52.873, -118.0866], name: "Jasper SkyTram", date: "7 September 2025" },
+        { coords: [52.8333, -118.0833], name: "Valley of the Five Lakes", date: "7 September 2025" },
+        { coords: [52.9058, -118.0583], name: "Pyramid Lake", date: "7 September 2025" },
+        { coords: [52.8731, -118.0826], name: "Jasper Brewing Co", date: "7 September 2025" },
+        { coords: [52.875, -118.0833], name: "Jasper Planetarium", date: "7 September 2025" },
+        { coords: [52.8734, -118.082], name: "Chateau Jasper Hotel", date: "7 September 2025" },
 
-  // 08 Sept 2025
-  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "8 September 2025" },
-  { coords: [52.8730, -118.0866], name: "Jasper SkyTram", date: "8 September 2025" },
-  { coords: [52.8333, -118.0833], name: "Valley of the Five Lakes", date: "8 September 2025" },
-  { coords: [52.9058, -118.0583], name: "Pyramid Lake", date: "8 September 2025" },
-  { coords: [52.8731, -118.0826], name: "Jasper Brewing Co", date: "8 September 2025" },
-  { coords: [52.8750, -118.0833], name: "Jasper Planetarium", date: "8 September 2025" },
-  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "8 September 2025" },
+        // 08 Sept 2025
+        { coords: [52.8734, -118.082], name: "Chateau Jasper Hotel", date: "8 September 2025" },
+        { coords: [52.873, -118.0866], name: "Jasper SkyTram", date: "8 September 2025" },
+        { coords: [52.8333, -118.0833], name: "Valley of the Five Lakes", date: "8 September 2025" },
+        { coords: [52.9058, -118.0583], name: "Pyramid Lake", date: "8 September 2025" },
+        { coords: [52.8731, -118.0826], name: "Jasper Brewing Co", date: "8 September 2025" },
+        { coords: [52.875, -118.0833], name: "Jasper Planetarium", date: "8 September 2025" },
+        { coords: [52.8734, -118.082], name: "Chateau Jasper Hotel", date: "8 September 2025" },
 
-  // 09 Sept 2025
-  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "9 September 2025" },
-  { coords: [52.8867, -117.5228], name: "Maligne Lake", date: "9 September 2025" },
-  { coords: [52.8239, -117.5992], name: "Medicine Lake", date: "9 September 2025" },
-  { coords: [52.8867, -117.5228], name: "Maligne Lake (Boat to Spirit Island)", date: "9 September 2025" },
-  { coords: [52.6222, -117.4858], name: "Spirit Island", date: "9 September 2025" },
-  { coords: [52.8960, -117.7100], name: "Maligne Canyon", date: "9 September 2025" },
-  { coords: [52.8945, -117.7067], name: "Maligne Canyon Bridges Walk", date: "9 September 2025" },
-  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "9 September 2025" },
+        // 09 Sept 2025
+        { coords: [52.8734, -118.082], name: "Chateau Jasper Hotel", date: "9 September 2025" },
+        { coords: [52.8867, -117.5228], name: "Maligne Lake", date: "9 September 2025" },
+        { coords: [52.8239, -117.5992], name: "Medicine Lake", date: "9 September 2025" },
+        { coords: [52.8867, -117.5228], name: "Maligne Lake (Boat to Spirit Island)", date: "9 September 2025" },
+        { coords: [52.6222, -117.4858], name: "Spirit Island", date: "9 September 2025" },
+        { coords: [52.896, -117.71], name: "Maligne Canyon", date: "9 September 2025" },
+        { coords: [52.8945, -117.7067], name: "Maligne Canyon Bridges Walk", date: "9 September 2025" },
+        { coords: [52.8734, -118.082], name: "Chateau Jasper Hotel", date: "9 September 2025" },
 
-  // 10 Sept 2025
-  { coords: [52.8734, -118.0820], name: "Chateau Jasper Hotel", date: "10 September 2025" },
-  { coords: [53.1100, -119.2200], name: "Mount Robson", date: "10 September 2025" },
-  { coords: [53.0000, -119.0000], name: "Rearguard Falls", date: "10 September 2025" },
-  { coords: [51.6500, -120.0333], name: "Clearwater", date: "10 September 2025" },
-  { coords: [51.6739, -120.0336], name: "Spahats Falls", date: "10 September 2025" },
-  { coords: [50.6745, -120.3273], name: "DoubleTree Kamloops Hotel", date: "10 September 2025" },
+        // 10 Sept 2025
+        { coords: [52.8734, -118.082], name: "Chateau Jasper Hotel", date: "10 September 2025" },
+        { coords: [53.11, -119.22], name: "Mount Robson", date: "10 September 2025" },
+        { coords: [53.0, -119.0], name: "Rearguard Falls", date: "10 September 2025" },
+        { coords: [51.65, -120.0333], name: "Clearwater", date: "10 September 2025" },
+        { coords: [51.6739, -120.0336], name: "Spahats Falls", date: "10 September 2025" },
+        { coords: [50.6745, -120.3273], name: "DoubleTree Kamloops Hotel", date: "10 September 2025" },
 
-  // 11 Sept 2025
-  { coords: [50.6745, -120.3273], name: "DoubleTree Kamloops Hotel", date: "11 September 2025" },
-  { coords: [49.6100, -121.0500], name: "Falls Lake Trail, Coquihalla", date: "11 September 2025" },
-  { coords: [49.6066, -121.0511], name: "Zopkios Rest Area", date: "11 September 2025" },
-  { coords: [49.1578, -121.7522], name: "Bridal Falls Provincial Park", date: "11 September 2025" },
-  { coords: [49.1686, -122.5797], name: "Fort Langley National Historic Site", date: "11 September 2025" },
-  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "11 September 2025" },
+        // 11 Sept 2025
+        { coords: [50.6745, -120.3273], name: "DoubleTree Kamloops Hotel", date: "11 September 2025" },
+        { coords: [49.61, -121.05], name: "Falls Lake Trail, Coquihalla", date: "11 September 2025" },
+        { coords: [49.6066, -121.0511], name: "Zopkios Rest Area", date: "11 September 2025" },
+        { coords: [49.1578, -121.7522], name: "Bridal Falls Provincial Park", date: "11 September 2025" },
+        { coords: [49.1686, -122.5797], name: "Fort Langley National Historic Site", date: "11 September 2025" },
+        { coords: [49.283, -123.121], name: "Sandman Vancouver Downtown Hotel", date: "11 September 2025" },
 
-  // 12 Sept 2025
-  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "12 September 2025" },
-  { coords: [49.2827, -123.1156], name: "Medina Cafe", date: "12 September 2025" },
-  { coords: [49.3043, -123.1443], name: "Stanley Park", date: "12 September 2025" },
-  { coords: [49.2706, -123.1359], name: "Granville Island Public Market", date: "12 September 2025" },
-  { coords: [49.2700, -123.1340], name: "Liberty Distillery", date: "12 September 2025" },
-  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "12 September 2025" },
+        // 12 Sept 2025
+        { coords: [49.283, -123.121], name: "Sandman Vancouver Downtown Hotel", date: "12 September 2025" },
+        { coords: [49.2827, -123.1156], name: "Medina Cafe", date: "12 September 2025" },
+        { coords: [49.3043, -123.1443], name: "Stanley Park", date: "12 September 2025" },
+        { coords: [49.2706, -123.1359], name: "Granville Island Public Market", date: "12 September 2025" },
+        { coords: [49.27, -123.134], name: "Liberty Distillery", date: "12 September 2025" },
+        { coords: [49.283, -123.121], name: "Sandman Vancouver Downtown Hotel", date: "12 September 2025" },
 
-  // 13 Sept 2025
-  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "13 September 2025" },
-  { coords: [49.2345, -123.1167], name: "VanDusen Botanical Garden", date: "13 September 2025" },
-  { coords: [49.2417, -123.1120], name: "Queen Elizabeth Park", date: "13 September 2025" },
-  { coords: [49.2796, -123.1066], name: "Chinatown", date: "13 September 2025" },
-  { coords: [49.2846, -123.1117], name: "Gastown Steam Clock", date: "13 September 2025" },
-  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "13 September 2025" },
+        // 13 Sept 2025
+        { coords: [49.283, -123.121], name: "Sandman Vancouver Downtown Hotel", date: "13 September 2025" },
+        { coords: [49.2345, -123.1167], name: "VanDusen Botanical Garden", date: "13 September 2025" },
+        { coords: [49.2417, -123.112], name: "Queen Elizabeth Park", date: "13 September 2025" },
+        { coords: [49.2796, -123.1066], name: "Chinatown", date: "13 September 2025" },
+        { coords: [49.2846, -123.1117], name: "Gastown Steam Clock", date: "13 September 2025" },
+        { coords: [49.283, -123.121], name: "Sandman Vancouver Downtown Hotel", date: "13 September 2025" },
 
-  // 14 Sept 2025
-  { coords: [49.2830, -123.1210], name: "Sandman Vancouver Downtown Hotel", date: "14 September 2025" },
-  { coords: [49.2836, -123.1066], name: "Gastown", date: "14 September 2025" },
-  { coords: [49.3429, -123.1149], name: "Capilano Suspension Bridge", date: "14 September 2025" },
-  { coords: [49.1947, -123.1792], name: "Vancouver Airport (YVR)", date: "14 September 2025" },
+        // 14 Sept 2025
+        { coords: [49.283, -123.121], name: "Sandman Vancouver Downtown Hotel", date: "14 September 2025" },
+        { coords: [49.2836, -123.1066], name: "Gastown", date: "14 September 2025" },
+        { coords: [49.3429, -123.1149], name: "Capilano Suspension Bridge", date: "14 September 2025" },
+        { coords: [49.1947, -123.1792], name: "Vancouver Airport (YVR)", date: "14 September 2025" },
 
-  // 15 Sept 2025 - Travel Day
-  // (no locations, travel)
+        // 15 Sept 2025 - Travel Day
+        // (no locations, travel)
 
-  // 16 Sept 2025
-  { coords: [-36.8485, 174.7633], name: "Auckland Airport", date: "16 September 2025" },
-  { coords: [-36.8434, 174.7668], name: "Viaduct Harbour", date: "16 September 2025" },
-  { coords: [-36.8408, 174.7530], name: "Wynyard Quarter", date: "16 September 2025" },
-  { coords: [-36.8603, 174.7770], name: "Auckland Domain", date: "16 September 2025" },
-  { coords: [-36.8790, 174.7645], name: "Mount Eden", date: "16 September 2025" },
-  { coords: [-36.8516, 174.7635], name: "Four Points Auckland", date: "16 September 2025" },
+        // 16 Sept 2025
+        { coords: [-36.8485, 174.7633], name: "Auckland Airport", date: "16 September 2025" },
+        { coords: [-36.8434, 174.7668], name: "Viaduct Harbour", date: "16 September 2025" },
+        { coords: [-36.8408, 174.753], name: "Wynyard Quarter", date: "16 September 2025" },
+        { coords: [-36.8603, 174.777], name: "Auckland Domain", date: "16 September 2025" },
+        { coords: [-36.879, 174.7645], name: "Mount Eden", date: "16 September 2025" },
+        { coords: [-36.8516, 174.7635], name: "Four Points Auckland", date: "16 September 2025" },
 
-  // 17 Sept 2025
-  { coords: [-36.8604, 174.7771], name: "Auckland War Memorial Museum", date: "17 September 2025" },
-  { coords: [-36.8485, 174.8300], name: "Mission Bay", date: "17 September 2025" },
-  { coords: [-36.8516, 174.7635], name: "Four Points Auckland", date: "17 September 2025" },
+        // 17 Sept 2025
+        { coords: [-36.8604, 174.7771], name: "Auckland War Memorial Museum", date: "17 September 2025" },
+        { coords: [-36.8485, 174.83], name: "Mission Bay", date: "17 September 2025" },
+        { coords: [-36.8516, 174.7635], name: "Four Points Auckland", date: "17 September 2025" },
 
-  // 18 Sept 2025
-  { coords: [-38.2590, 175.1042], name: "Waitomo Glowworm Caves", date: "18 September 2025" },
-  { coords: [-38.2608, 175.1075], name: "Ruakuri Walk", date: "18 September 2025" },
-  { coords: [-38.2590, 175.1042], name: "Waitomo", date: "18 September 2025" },
+        // 18 Sept 2025
+        { coords: [-38.259, 175.1042], name: "Waitomo Glowworm Caves", date: "18 September 2025" },
+        { coords: [-38.2608, 175.1075], name: "Ruakuri Walk", date: "18 September 2025" },
+        { coords: [-38.259, 175.1042], name: "Waitomo", date: "18 September 2025" },
 
-  // 19 Sept 2025
-  { coords: [-38.3667, 175.8700], name: "Matamata", date: "19 September 2025" },
-  { coords: [-37.8722, 175.6822], name: "Hobbiton", date: "19 September 2025" },
-  { coords: [-38.1368, 176.2497], name: "Rotorua", date: "19 September 2025" },
-  { coords: [-38.1264, 175.7744], name: "Putaruru Blue Spring", date: "19 September 2025" },
-  { coords: [-38.1370, 176.2510], name: "Polynesian Spa Rotorua", date: "19 September 2025" },
+        // 19 Sept 2025
+        { coords: [-38.3667, 175.87], name: "Matamata", date: "19 September 2025" },
+        { coords: [-37.8722, 175.6822], name: "Hobbiton", date: "19 September 2025" },
+        { coords: [-38.1368, 176.2497], name: "Rotorua", date: "19 September 2025" },
+        { coords: [-38.1264, 175.7744], name: "Putaruru Blue Spring", date: "19 September 2025" },
+        { coords: [-38.137, 176.251], name: "Polynesian Spa Rotorua", date: "19 September 2025" },
 
-  // 20 Sept 2025
-  { coords: [-38.3575, 176.3672], name: "Wai-O-Tapu", date: "20 September 2025" },
-  { coords: [-38.3575, 176.3672], name: "Wai-O-Tapu Thermal Wonderland", date: "20 September 2025" },
-  { coords: [-38.6857, 176.0702], name: "Taupō", date: "20 September 2025" },
-  { coords: [-38.6482, 176.0896], name: "Huka Falls Walkway", date: "20 September 2025" },
-  { coords: [-38.6857, 176.0702], name: "Taupō", date: "20 September 2025" },
+        // 20 Sept 2025
+        { coords: [-38.3575, 176.3672], name: "Wai-O-Tapu", date: "20 September 2025" },
+        { coords: [-38.3575, 176.3672], name: "Wai-O-Tapu Thermal Wonderland", date: "20 September 2025" },
+        { coords: [-38.6857, 176.0702], name: "Taupō", date: "20 September 2025" },
+        { coords: [-38.6482, 176.0896], name: "Huka Falls Walkway", date: "20 September 2025" },
+        { coords: [-38.6857, 176.0702], name: "Taupō", date: "20 September 2025" },
 
-  // 21 Sept 2025
-  { coords: [-39.1347, 175.6400], name: "Tongariro National Park", date: "21 September 2025" },
-  { coords: [-39.1233, 175.6522], name: "Taranaki Falls Track", date: "21 September 2025" },
-  { coords: [-39.1347, 175.6400], name: "Tongariro", date: "21 September 2025" },
+        // 21 Sept 2025
+        { coords: [-39.1347, 175.64], name: "Tongariro National Park", date: "21 September 2025" },
+        { coords: [-39.1233, 175.6522], name: "Taranaki Falls Track", date: "21 September 2025" },
+        { coords: [-39.1347, 175.64], name: "Tongariro", date: "21 September 2025" },
 
-  // 22 Sept 2025
-  { coords: [-41.2865, 174.7762], name: "Wellington", date: "22 September 2025" },
-  { coords: [-41.2906, 174.7821], name: "Te Papa Museum", date: "22 September 2025" },
-  { coords: [-41.2940, 174.7965], name: "Oriental Bay", date: "22 September 2025" },
-  { coords: [-41.2865, 174.7762], name: "Wellington", date: "22 September 2025" },
+        // 22 Sept 2025
+        { coords: [-41.2865, 174.7762], name: "Wellington", date: "22 September 2025" },
+        { coords: [-41.2906, 174.7821], name: "Te Papa Museum", date: "22 September 2025" },
+        { coords: [-41.294, 174.7965], name: "Oriental Bay", date: "22 September 2025" },
+        { coords: [-41.2865, 174.7762], name: "Wellington", date: "22 September 2025" },
 
-  // 23 Sept 2025
-  { coords: [-41.2706, 173.2833], name: "Nelson", date: "23 September 2025" },
-  { coords: [-41.2769, 173.2992], name: "Centre of NZ Monument", date: "23 September 2025" },
-  { coords: [-41.2765, 173.2839], name: "Queens Gardens Nelson", date: "23 September 2025" },
-  { coords: [-41.2667, 173.0167], name: "Mārahau", date: "23 September 2025" },
+        // 23 Sept 2025
+        { coords: [-41.2706, 173.2833], name: "Nelson", date: "23 September 2025" },
+        { coords: [-41.2769, 173.2992], name: "Centre of NZ Monument", date: "23 September 2025" },
+        { coords: [-41.2765, 173.2839], name: "Queens Gardens Nelson", date: "23 September 2025" },
+        { coords: [-41.2667, 173.0167], name: "Mārahau", date: "23 September 2025" },
 
-  // 24 Sept 2025
-  { coords: [-41.2667, 173.0167], name: "Abel Tasman Track", date: "24 September 2025" },
-  { coords: [-41.8000, 172.8333], name: "St Arnaud", date: "24 September 2025" },
-  { coords: [-41.7500, 171.6000], name: "Westport", date: "24 September 2025" },
-  { coords: [-41.7523, 171.6032], name: "Coaltown Museum", date: "24 September 2025" },
+        // 24 Sept 2025
+        { coords: [-41.2667, 173.0167], name: "Abel Tasman Track", date: "24 September 2025" },
+        { coords: [-41.8, 172.8333], name: "St Arnaud", date: "24 September 2025" },
+        { coords: [-41.75, 171.6], name: "Westport", date: "24 September 2025" },
+        { coords: [-41.7523, 171.6032], name: "Coaltown Museum", date: "24 September 2025" },
 
-  // 25 Sept 2025
-  { coords: [-42.1236, 171.3269], name: "Punakaiki", date: "25 September 2025" },
-  { coords: [-42.1169, 171.3269], name: "Pancake Rocks", date: "25 September 2025" },
-  { coords: [-42.7170, 171.0000], name: "Hokitika", date: "25 September 2025" },
-  { coords: [-43.3890, 170.1820], name: "Franz Josef Glacier", date: "25 September 2025" },
-  { coords: [-43.3910, 170.1900], name: "Peters Pool Walk", date: "25 September 2025" },
-  { coords: [-43.4647, 170.0189], name: "Fox Glacier", date: "25 September 2025" },
-  { coords: [-43.4667, 170.0167], name: "Minnehaha Walk", date: "25 September 2025" },
+        // 25 Sept 2025
+        { coords: [-42.1236, 171.3269], name: "Punakaiki", date: "25 September 2025" },
+        { coords: [-42.1169, 171.3269], name: "Pancake Rocks", date: "25 September 2025" },
+        { coords: [-42.717, 171.0], name: "Hokitika", date: "25 September 2025" },
+        { coords: [-43.389, 170.182], name: "Franz Josef Glacier", date: "25 September 2025" },
+        { coords: [-43.391, 170.19], name: "Peters Pool Walk", date: "25 September 2025" },
+        { coords: [-43.4647, 170.0189], name: "Fox Glacier", date: "25 September 2025" },
+        { coords: [-43.4667, 170.0167], name: "Minnehaha Walk", date: "25 September 2025" },
 
-  // 26 Sept 2025
-  { coords: [-43.4647, 170.0189], name: "Fox Glacier", date: "26 September 2025" },
-  { coords: [-43.8783, 169.0422], name: "Haast", date: "26 September 2025" },
-  { coords: [-44.4821, 169.1994], name: "Blue Pools Track", date: "26 September 2025" },
-  { coords: [-44.6980, 169.1340], name: "Roy's Peak", date: "26 September 2025" },
-  { coords: [-44.7000, 169.1500], name: "Wānaka", date: "26 September 2025" },
+        // 26 Sept 2025
+        { coords: [-43.4647, 170.0189], name: "Fox Glacier", date: "26 September 2025" },
+        { coords: [-43.8783, 169.0422], name: "Haast", date: "26 September 2025" },
+        { coords: [-44.4821, 169.1994], name: "Blue Pools Track", date: "26 September 2025" },
+        { coords: [-44.698, 169.134], name: "Roy's Peak", date: "26 September 2025" },
+        { coords: [-44.7, 169.15], name: "Wānaka", date: "26 September 2025" },
 
-  // 27 Sept 2025
-  { coords: [-44.9333, 168.8000], name: "Arrowtown", date: "27 September 2025" },
-  { coords: [-45.0312, 168.6626], name: "Queenstown", date: "27 September 2025" },
-  { coords: [-44.8500, 168.2167], name: "Cascade Creek Campsite", date: "27 September 2025" },
+        // 27 Sept 2025
+        { coords: [-44.9333, 168.8], name: "Arrowtown", date: "27 September 2025" },
+        { coords: [-45.0312, 168.6626], name: "Queenstown", date: "27 September 2025" },
+        { coords: [-44.85, 168.2167], name: "Cascade Creek Campsite", date: "27 September 2025" },
 
-  // 28 Sept 2025
-  { coords: [-44.6167, 167.8667], name: "Milford Sound", date: "28 September 2025" },
-  { coords: [-45.0312, 168.6626], name: "Queenstown", date: "28 September 2025" },
+        // 28 Sept 2025
+        { coords: [-44.6167, 167.8667], name: "Milford Sound", date: "28 September 2025" },
+        { coords: [-45.0312, 168.6626], name: "Queenstown", date: "28 September 2025" },
 
-  // 29 Sept 2025
-  { coords: [-45.0312, 168.6626], name: "Queenstown", date: "29 September 2025" },
-  { coords: [-44.5815, 169.5966], name: "Lindis Pass Lookout", date: "29 September 2025" },
-  { coords: [-44.2436, 169.1990], name: "Lake Pukaki", date: "29 September 2025" },
-  { coords: [-43.5950, 170.1417], name: "Mt Cook", date: "29 September 2025" },
-  { coords: [-43.7320, 170.0960], name: "Kea Point Walk", date: "29 September 2025" },
-  { coords: [-43.7200, 170.1000], name: "Hooker Valley", date: "29 September 2025" },
-  { coords: [-43.7333, 170.1333], name: "Glentanner Holiday Park Mt Cook", date: "29 September 2025" },
+        // 29 Sept 2025
+        { coords: [-45.0312, 168.6626], name: "Queenstown", date: "29 September 2025" },
+        { coords: [-44.5815, 169.5966], name: "Lindis Pass Lookout", date: "29 September 2025" },
+        { coords: [-44.2436, 169.199], name: "Lake Pukaki", date: "29 September 2025" },
+        { coords: [-43.595, 170.1417], name: "Mt Cook", date: "29 September 2025" },
+        { coords: [-43.732, 170.096], name: "Kea Point Walk", date: "29 September 2025" },
+        { coords: [-43.72, 170.1], name: "Hooker Valley", date: "29 September 2025" },
+        { coords: [-43.7333, 170.1333], name: "Glentanner Holiday Park Mt Cook", date: "29 September 2025" },
 
-  // 30 Sept 2025
-  { coords: [-44.0049, 170.4838], name: "Tekapo", date: "30 September 2025" },
-  { coords: [-43.5321, 172.6362], name: "Christchurch", date: "30 September 2025" },
+        // 30 Sept 2025
+        { coords: [-44.0049, 170.4838], name: "Tekapo", date: "30 September 2025" },
+        { coords: [-43.5321, 172.6362], name: "Christchurch", date: "30 September 2025" },
 
-  // 1 Oct 2025
-  { coords: [-43.5321, 172.6362], name: "Christchurch", date: "1 October 2025" },
+        // 1 Oct 2025
+        { coords: [-43.5321, 172.6362], name: "Christchurch", date: "1 October 2025" },
 
-  // 2 Oct 2025
-  { coords: [-43.4881, 172.5331], name: "Christchurch Airport", date: "2 October 2025" },
-  { coords: [-27.4698, 153.0251], name: "Brisbane Airport", date: "2 October 2025" },
-  { coords: [-28.6474, 153.6020], name: "Byron Bay", date: "2 October 2025" }
+        // 2 Oct 2025
+        { coords: [-43.4881, 172.5331], name: "Christchurch Airport", date: "2 October 2025" },
+        { coords: [-27.4698, 153.0251], name: "Brisbane Airport", date: "2 October 2025" },
+        { coords: [-28.6474, 153.602], name: "Byron Bay", date: "2 October 2025" },
+      ];
 
-
-];
-
-
-
-    // === Setup map ===
-    var map = L.map('map').setView([51, -115], 6);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-
-    var routeLine; // keep reference to current polyline
-
-    // Fill day selector with unique dates
-    var uniqueDates = [...new Set(places.map(p => p.date))];
-    var daySelect = document.getElementById("daySelect");
-    uniqueDates.forEach(d => {
-      var opt = document.createElement("option");
-      opt.value = d;
-      opt.textContent = d;
-      daySelect.appendChild(opt);
-    });
-
-    // Function to render markers and route
-    function renderDay(filterDate) {
-      // clear existing markers and lines
-      map.eachLayer(layer => {
-        if (layer instanceof L.Marker || layer instanceof L.Polyline) {
-          map.removeLayer(layer);
-        }
-      });
-
-      // re-add tile layer (since we removed it above)
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
+      // === Setup map ===
+      var map = L.map("map").setView([51, -115], 6);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
       }).addTo(map);
 
-      // filter places
-      var dayPlaces = places.filter(p => filterDate === "all" || p.date === filterDate);
+      var routeLine; // keep reference to current polyline
 
-      // add markers
-      dayPlaces.forEach(place => {
-        L.marker(place.coords).addTo(map)
-          .bindPopup(`<b>${place.name}</b><br>${place.date}`);
+      // Fill day selector with unique dates
+      var uniqueDates = [...new Set(places.map((p) => p.date))];
+      var daySelect = document.getElementById("daySelect");
+      uniqueDates.forEach((d) => {
+        var opt = document.createElement("option");
+        opt.value = d;
+        opt.textContent = d;
+        daySelect.appendChild(opt);
       });
 
-      // draw route line
-      if (dayPlaces.length > 1) {
-        routeLine = L.polyline(
-          dayPlaces.map(p => p.coords),
-          { color: "blue", weight: 3, opacity: 0.7 }
-        ).addTo(map);
-        map.fitBounds(routeLine.getBounds());
-      } else if (dayPlaces.length === 1) {
-        map.setView(dayPlaces[0].coords, 10);
+      // Function to render markers and route
+      function renderDay(filterDate) {
+        // clear existing markers and lines
+        map.eachLayer((layer) => {
+          if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+            map.removeLayer(layer);
+          }
+        });
+
+        // re-add tile layer (since we removed it above)
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: "© OpenStreetMap contributors",
+        }).addTo(map);
+
+        markers = []; // Reset markers array
+
+        // filter places
+        var dayPlaces = places.filter((p) => filterDate === "all" || p.date === filterDate);
+
+        // add markers
+        dayPlaces.forEach((place) => {
+          var marker = L.marker(place.coords)
+            .addTo(map)
+            .bindPopup(`<b>${place.name}</b><br>${place.date}`)
+            .bindTooltip(place.name, { permanent: false, direction: "top", offset: [0, -10] });
+          markers.push(marker);
+        });
+
+        // draw route line
+        if (dayPlaces.length > 1) {
+          routeLine = L.polyline(
+            dayPlaces.map((p) => p.coords),
+            { color: "blue", weight: 3, opacity: 0.7 }
+          ).addTo(map);
+          map.fitBounds(routeLine.getBounds());
+        } else if (dayPlaces.length === 1) {
+          map.setView(dayPlaces[0].coords, 10);
+        }
       }
-    }
 
-    // Event listener for dropdown
-    daySelect.addEventListener("change", () => renderDay(daySelect.value));
+      // Show/hide tooltips based on zoom level
+      function updateTooltips() {
+        var show = map.getZoom() >= 10; // Adjust zoom threshold as needed
+        markers.forEach((marker) => {
+          if (show) {
+            marker.openTooltip();
+          } else {
+            marker.closeTooltip();
+          }
+        });
+      }
 
-    // Initial render (all days)
-    renderDay("all");
-  </script>
-</body>
+      map.on("zoomend", updateTooltips);
+
+      // Event listener for dropdown
+      daySelect.addEventListener("change", () => renderDay(daySelect.value));
+
+      // Initial render (all days)
+      renderDay("all");
+    </script>
+  </body>
 </html>

@@ -1876,6 +1876,7 @@ input, select, textarea {
 		text-decoration: none;
 		text-transform: uppercase;
 		white-space: nowrap;
+		margin-bottom: 2em;
 	}
 
 		input[type="submit"]:hover,

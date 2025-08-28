@@ -309,7 +309,7 @@
 
       // Show/hide tooltips based on zoom level
       function updateTooltips() {
-        var show = map.getZoom() >= 10; // Adjust zoom threshold as needed
+        var show = map.getZoom() >= 7; // Adjust zoom threshold as needed
         markers.forEach((marker) => {
           if (show) {
             marker.openTooltip();

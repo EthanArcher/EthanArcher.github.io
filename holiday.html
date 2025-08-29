@@ -14,22 +14,21 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
-  
-    <body class="no-scroll">
-    <div id="wrapper" style="margin: 0; padding: 0;">
-      <section id="header" style="padding: 0; margin: 0;">
-  <div id="controls" class="content" style="display: flex; gap: 0.5em; align-items: center; padding: 0.5em 0; justify-content: center;">
-          <div style="display: flex; flex-direction: column;">
+
+  <body class="no-scroll">
+    <div id="wrapper" style="margin: 0; padding: 0">
+      <section id="header" style="padding: 0; margin: 0">
+        <div id="controls" class="content" style="display: flex; gap: 0.5em; align-items: center; padding: 0.5em 0; justify-content: center">
+          <div style="display: flex; flex-direction: column">
             <select id="countrySelect">
               <option value="all">All countries</option>
             </select>
           </div>
-          <div style="display: flex; flex-direction: column;">
+          <div style="display: flex; flex-direction: column">
             <select id="daySelect">
               <option value="all">All days</option>
             </select>
           </div>
-        </div>
         </div>
       </section>
     </div>
@@ -47,20 +46,20 @@
 
       let routeLine;
       let markers = [];
-    const daySelect = document.getElementById("daySelect");
-    const countrySelect = document.getElementById("countrySelect");
+      const daySelect = document.getElementById("daySelect");
+      const countrySelect = document.getElementById("countrySelect");
 
       function fillCountrySelector() {
-          while (countrySelect.options.length > 1) {
-            countrySelect.remove(1);
-          }
-          const uniqueCountries = [...new Set(places.map((p) => p.country))];
-          uniqueCountries.forEach((c) => {
-            const opt = document.createElement("option");
-            opt.value = c;
-            opt.textContent = c;
-            countrySelect.appendChild(opt);
-          });
+        while (countrySelect.options.length > 1) {
+          countrySelect.remove(1);
+        }
+        const uniqueCountries = [...new Set(places.map((p) => p.country))];
+        uniqueCountries.forEach((c) => {
+          const opt = document.createElement("option");
+          opt.value = c;
+          opt.textContent = c;
+          countrySelect.appendChild(opt);
+        });
       }
 
       function fillDaySelector(filteredPlaces) {
@@ -126,7 +125,7 @@
       map.on("zoomend", updateTooltips);
 
       daySelect.addEventListener("change", () => renderDay());
-    daySelect.addEventListener("change", () => renderDay());
+      daySelect.addEventListener("change", () => renderDay());
       countrySelect.addEventListener("change", () => {
         // When country changes, update day selector to only show days for that country
         const selectedCountry = countrySelect.value;

@@ -124,31 +124,31 @@
       }
       map.on("zoomend", updateTooltips);
 
-      daySelect.addEventListener("change", () => renderDay());
-      daySelect.addEventListener("change", () => renderDay());
+      daySelect.addEventListener("change", renderDay);
       countrySelect.addEventListener("change", () => {
         // When country changes, update day selector to only show days for that country
         const selectedCountry = countrySelect.value;
-        let filteredPlaces = places;
-        if (selectedCountry !== "all") {
-          filteredPlaces = places.filter((p) => p.country === selectedCountry);
-        }
+        const filteredPlaces = selectedCountry !== "all" ? places.filter((p) => p.country === selectedCountry) : places;
         fillDaySelector(filteredPlaces);
         renderDay();
       });
 
-      fetch("assets/resources/holiday-places.json")
-        .then((response) => response.json())
-        .then((data) => {
-          places = data;
-          fillCountrySelector();
-          fillDaySelector(places);
-          renderDay();
-        })
-        .catch((err) => {
-          alert("Failed to load holiday places data.");
-          console.error(err);
-        });
+      function initHolidayMap() {
+        fetch("assets/resources/holiday-places.json")
+          .then((response) => response.json())
+          .then((data) => {
+            places = data;
+            fillCountrySelector();
+            fillDaySelector(places);
+            renderDay();
+          })
+          .catch((err) => {
+            alert("Failed to load holiday places data.");
+            console.error(err);
+          });
+      }
+
+      initHolidayMap();
     </script>
   </body>
 </html>

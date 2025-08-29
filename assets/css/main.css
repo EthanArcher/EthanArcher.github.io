@@ -3922,6 +3922,11 @@ input, select, textarea {
 
 	}
 
+	#map {
+        width: 100%;
+        height: 95vh;
+      }
+
 	/* CSS to create the 3x3 grid */
 .grid-container {
 	display: grid;

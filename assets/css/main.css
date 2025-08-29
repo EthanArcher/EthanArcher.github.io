@@ -3980,8 +3980,12 @@ body.is-ie #wrapper > section > .content > section {
 
 html.no-scroll,
 body.no-scroll {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden !important;
-  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 #map {

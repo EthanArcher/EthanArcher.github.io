@@ -99,12 +99,31 @@
         if (selectedDay !== "all") {
           filteredPlaces = filteredPlaces.filter((p) => p.date === selectedDay);
         }
-        filteredPlaces.forEach((place) => {
-          const marker = L.marker(place.coords)
-            .bindPopup(`<b>${place.name}</b><br>${place.date}`)
-            .bindTooltip(place.name, { permanent: false, direction: "top", offset: [0, -10] });
-          markers.push(marker);
-          markerCluster.addLayer(marker);
+
+        // --- Only add unique markers for start/end if they are the same ---
+        let markerCoords = new Set();
+        filteredPlaces.forEach((place, idx) => {
+          // If first or last, check for duplicate
+          if (
+            (idx === 0 || idx === filteredPlaces.length - 1) &&
+            filteredPlaces.length > 1
+          ) {
+            const first = filteredPlaces[0].coords.join(",");
+            const last = filteredPlaces[filteredPlaces.length - 1].coords.join(",");
+            if (first === last && idx === filteredPlaces.length - 1) {
+              // Already added as first, skip last
+              return;
+            }
+          }
+          const coordKey = place.coords.join(",");
+          if (!markerCoords.has(coordKey)) {
+            const marker = L.marker(place.coords)
+              .bindPopup(`<b>${place.name}</b><br>${place.date}`)
+              .bindTooltip(place.name, { permanent: false, direction: "top", offset: [0, -10] });
+            markers.push(marker);
+            markerCluster.addLayer(marker);
+            markerCoords.add(coordKey);
+          }
         });
         map.addLayer(markerCluster);
 
@@ -122,7 +141,7 @@
       }
 
       function updateTooltips() {
-        const show = map.getZoom() >= 7;
+        const show = map.getZoom() >= 5;
         markers.forEach((marker) => {
           if (show) {
             marker.openTooltip();

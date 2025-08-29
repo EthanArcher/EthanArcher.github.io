@@ -12,11 +12,12 @@
     <meta name="keywords" content="" />
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
 
   <body class="no-scroll">
-    <div id="wrapper" style="margin: 0; padding: 0">
       <section id="header" style="padding: 0; margin: 0">
         <div id="controls" class="content" style="display: flex; gap: 0.5em; align-items: center; padding: 0.5em 0; justify-content: center">
           <div style="display: flex; flex-direction: column">
@@ -31,12 +32,12 @@
           </div>
         </div>
       </section>
-    </div>
     <section id="map">
       <div id="map"></div>
     </section>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script>
       let places = [];
       const map = L.map("map").setView([51, -115], 6);
@@ -46,6 +47,7 @@
 
       let routeLine;
       let markers = [];
+      let markerCluster; // Add this at the top with your other variables
       const daySelect = document.getElementById("daySelect");
       const countrySelect = document.getElementById("countrySelect");
 
@@ -77,14 +79,17 @@
 
       function renderDay() {
         map.eachLayer((layer) => {
-          if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+          if (layer instanceof L.MarkerClusterGroup || layer instanceof L.Marker || layer instanceof L.Polyline) {
             map.removeLayer(layer);
           }
         });
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          attribution: "© OpenStreetMap contributors",
-        }).addTo(map);
+
+        if (markerCluster) {
+          map.removeLayer(markerCluster);
+        }
+        markerCluster = L.markerClusterGroup();
         markers = [];
+
         const selectedCountry = countrySelect.value;
         const selectedDay = daySelect.value;
         let filteredPlaces = places;
@@ -96,11 +101,13 @@
         }
         filteredPlaces.forEach((place) => {
           const marker = L.marker(place.coords)
-            .addTo(map)
             .bindPopup(`<b>${place.name}</b><br>${place.date}`)
             .bindTooltip(place.name, { permanent: false, direction: "top", offset: [0, -10] });
           markers.push(marker);
+          markerCluster.addLayer(marker);
         });
+        map.addLayer(markerCluster);
+
         if (filteredPlaces.length > 1) {
           routeLine = L.polyline(
             filteredPlaces.map((p) => p.coords),
@@ -110,6 +117,8 @@
         } else if (filteredPlaces.length === 1) {
           map.setView(filteredPlaces[0].coords, 10);
         }
+
+        updateTooltips();
       }
 
       function updateTooltips() {

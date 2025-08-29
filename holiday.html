@@ -15,14 +15,21 @@
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
   
-  <body>
-    <div id="wrapper">
-      <section id="header">
-        <div id="controls" class="content">
-          <label for="daySelect">Select Day:</label>
-          <select id="daySelect">
-            <option value="all">Show All</option>
-          </select>
+    <body class="no-scroll">
+    <div id="wrapper" style="margin: 0; padding: 0;">
+      <section id="header" style="padding: 0; margin: 0;">
+  <div id="controls" class="content" style="display: flex; gap: 0.5em; align-items: center; padding: 0.5em 0; justify-content: center;">
+          <div style="display: flex; flex-direction: column;">
+            <select id="countrySelect">
+              <option value="all">All countries</option>
+            </select>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <select id="daySelect">
+              <option value="all">All days</option>
+            </select>
+          </div>
+        </div>
         </div>
       </section>
     </div>
@@ -40,13 +47,27 @@
 
       let routeLine;
       let markers = [];
-      const daySelect = document.getElementById("daySelect");
+    const daySelect = document.getElementById("daySelect");
+    const countrySelect = document.getElementById("countrySelect");
 
-      function fillDaySelector() {
+      function fillCountrySelector() {
+          while (countrySelect.options.length > 1) {
+            countrySelect.remove(1);
+          }
+          const uniqueCountries = [...new Set(places.map((p) => p.country))];
+          uniqueCountries.forEach((c) => {
+            const opt = document.createElement("option");
+            opt.value = c;
+            opt.textContent = c;
+            countrySelect.appendChild(opt);
+          });
+      }
+
+      function fillDaySelector(filteredPlaces) {
         while (daySelect.options.length > 1) {
           daySelect.remove(1);
         }
-        const uniqueDates = [...new Set(places.map((p) => p.date))];
+        const uniqueDates = [...new Set(filteredPlaces.map((p) => p.date))];
         uniqueDates.forEach((d) => {
           const opt = document.createElement("option");
           opt.value = d;
@@ -55,7 +76,7 @@
         });
       }
 
-      function renderDay(filterDate) {
+      function renderDay() {
         map.eachLayer((layer) => {
           if (layer instanceof L.Marker || layer instanceof L.Polyline) {
             map.removeLayer(layer);
@@ -65,22 +86,30 @@
           attribution: "© OpenStreetMap contributors",
         }).addTo(map);
         markers = [];
-        const dayPlaces = places.filter((p) => filterDate === "all" || p.date === filterDate);
-        dayPlaces.forEach((place) => {
+        const selectedCountry = countrySelect.value;
+        const selectedDay = daySelect.value;
+        let filteredPlaces = places;
+        if (selectedCountry !== "all") {
+          filteredPlaces = filteredPlaces.filter((p) => p.country === selectedCountry);
+        }
+        if (selectedDay !== "all") {
+          filteredPlaces = filteredPlaces.filter((p) => p.date === selectedDay);
+        }
+        filteredPlaces.forEach((place) => {
           const marker = L.marker(place.coords)
             .addTo(map)
             .bindPopup(`<b>${place.name}</b><br>${place.date}`)
             .bindTooltip(place.name, { permanent: false, direction: "top", offset: [0, -10] });
           markers.push(marker);
         });
-        if (dayPlaces.length > 1) {
+        if (filteredPlaces.length > 1) {
           routeLine = L.polyline(
-            dayPlaces.map((p) => p.coords),
+            filteredPlaces.map((p) => p.coords),
             { color: "blue", weight: 3, opacity: 0.7 }
           ).addTo(map);
           map.fitBounds(routeLine.getBounds());
-        } else if (dayPlaces.length === 1) {
-          map.setView(dayPlaces[0].coords, 10);
+        } else if (filteredPlaces.length === 1) {
+          map.setView(filteredPlaces[0].coords, 10);
         }
       }
 
@@ -96,14 +125,26 @@
       }
       map.on("zoomend", updateTooltips);
 
-      daySelect.addEventListener("change", () => renderDay(daySelect.value));
+      daySelect.addEventListener("change", () => renderDay());
+    daySelect.addEventListener("change", () => renderDay());
+      countrySelect.addEventListener("change", () => {
+        // When country changes, update day selector to only show days for that country
+        const selectedCountry = countrySelect.value;
+        let filteredPlaces = places;
+        if (selectedCountry !== "all") {
+          filteredPlaces = places.filter((p) => p.country === selectedCountry);
+        }
+        fillDaySelector(filteredPlaces);
+        renderDay();
+      });
 
       fetch("assets/resources/holiday-places.json")
         .then((response) => response.json())
         .then((data) => {
           places = data;
-          fillDaySelector();
-          renderDay("all");
+          fillCountrySelector();
+          fillDaySelector(places);
+          renderDay();
         })
         .catch((err) => {
           alert("Failed to load holiday places data.");

@@ -2612,6 +2612,7 @@ input[type="radio"] + label:before {
   overflow: hidden; /* Ensures content doesn't overflow outside the fixed size */
   text-align: center;
   margin: 2px;
+  position: relative; /* For positioning the deselect button */
 }
 
 /* Image styling */
@@ -2630,6 +2631,78 @@ input[type="radio"] + label:before {
   padding: 1px;
   color: #333;
   line-height: 1; /* Adjust this value as needed */
+}
+
+/* Deselect button styling */
+.deselect-btn {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #ff4444;
+  border: none;
+  color: white !important;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  padding-left: 1px;
+  line-height: 1;
+  text-transform: none !important;
+  transition: all 0.2s ease;
+  z-index: 10;
+  visibility: hidden;
+  letter-spacing: 0;
+}
+
+.meal-card.selected .deselect-btn {
+  visibility: visible;
+}
+
+.deselect-btn:hover {
+  background-color: #cc0000;
+  color: white !important;
+  transform: scale(1.1);
+}
+
+/* Counter badge styling */
+.counter-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #2ee4bb;
+  border: 2px solid white;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  z-index: 10;
+  visibility: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.counter-badge:hover {
+  background-color: #26c9a3;
+  transform: scale(1.1);
+}
+
+/* Show badge only when meal is selected */
+.meal-card.selected .counter-badge {
+  visibility: visible;
 }
 
 /* Selected state for the card */

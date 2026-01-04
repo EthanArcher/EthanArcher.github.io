@@ -3,37 +3,43 @@ import { MEALS, INGREDIENT_AISLES } from "../resources/ingredients.js";
 // Function to generate the shopping list
 export function generateShoppingList() {
   const form = document.getElementById("dinnerForm");
-  const selectedDinners = new Set();
+  const selectedDinners = [];
   const shoppingList = {};
 
   const mealCards = document.querySelectorAll('.meal-card');
 
-  // Collect selected dinners
+  // Collect selected dinners with people count
+  const selectedMeals = [];
   mealCards.forEach(card => {
     if (card.classList.contains('selected')) {
       const mealValue = card.getAttribute('data-value');
-      console.log(mealValue);
-      selectedDinners.add(mealValue);
+      const peopleCount = parseInt(card.dataset.count) || 2;
+      const multiplier = peopleCount / 2; // Base recipe is for 2 people
+      console.log(mealValue, 'for', peopleCount, 'people, multiplier:', multiplier);
+      selectedMeals.push({ name: mealValue, peopleCount, multiplier });
+      selectedDinners.push(mealValue);
     }
   })
 
   // Collect and sum ingredients for the selected dinners
-  selectedDinners.forEach((dinner) => {
-    MEALS[dinner].forEach((ingredient) => {
+  selectedMeals.forEach((meal) => {
+    MEALS[meal.name].forEach((ingredient) => {
       const key = `${ingredient.name}-${ingredient.unit}`;
       const aisle = INGREDIENT_AISLES[ingredient.name];
+      const adjustedQuantity = ingredient.quantity * meal.multiplier;
       if (shoppingList[key]) {
         // Update the quantity if the ingredient already exists
         const existing = shoppingList[key];
         shoppingList[key] = {
           name: ingredient.name,
-          quantity: existing.quantity + ingredient.quantity,
+          quantity: existing.quantity + adjustedQuantity,
           unit: ingredient.unit,
           aisle: aisle,
         };
       } else {
         shoppingList[key] = {
           ...ingredient,
+          quantity: adjustedQuantity,
           aisle: aisle,
         };
       }
@@ -54,13 +60,13 @@ export function generateShoppingList() {
   const shoppingListDiv = document.getElementById("shoppingList");
   const copyShoppingButton = document.getElementById("copyShoppingButton");
 
-  if (selectedDinners.size > 0) {
+  if (selectedDinners.length > 0) {
     selectedMealsDiv.innerHTML = `
         <h2>Selected Meals</h2>
         </br>
-        <ul>${Array.from(selectedDinners)
-          .sort()
-          .map((meal) => `<li>- ${meal}</li>`)
+        <ul>${selectedMeals
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map(meal => `<li>- ${meal.name} for ${meal.peopleCount}</li>`)
           .join("")}
         </ul>
         </br>

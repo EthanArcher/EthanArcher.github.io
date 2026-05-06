@@ -22,7 +22,7 @@ export function generateShoppingList() {
 
   // Collect and sum ingredients for the selected dinners
   selectedMeals.forEach((meal) => {
-    MEALS[meal.name].forEach((ingredient) => {
+    MEALS[meal.name].ingredients.forEach((ingredient) => {
       const key = `${ingredient.name}-${ingredient.unit}`;
       const aisle = INGREDIENT_AISLES[ingredient.name];
       const adjustedQuantity = ingredient.quantity * meal.multiplier;

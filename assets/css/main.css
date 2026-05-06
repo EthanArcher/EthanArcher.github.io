@@ -4066,6 +4066,10 @@ body.no-scroll,
   height: 100vh;
 }
 
+#meal-options h2:not(:first-child) {
+  margin-top: 2rem;
+}
+
 /* CSS to create the 3x3 grid */
 .grid-container {
   display: grid;

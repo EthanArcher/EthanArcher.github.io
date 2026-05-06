@@ -15,7 +15,6 @@ export function generateShoppingList() {
       const mealValue = card.getAttribute('data-value');
       const peopleCount = parseInt(card.dataset.count) || 2;
       const multiplier = peopleCount / 2; // Base recipe is for 2 people
-      console.log(mealValue, 'for', peopleCount, 'people, multiplier:', multiplier);
       selectedMeals.push({ name: mealValue, peopleCount, multiplier });
       selectedDinners.push(mealValue);
     }
@@ -48,7 +47,6 @@ export function generateShoppingList() {
 
   const aisleGroups = {};
   Object.values(shoppingList).forEach((ingredient) => {
-    console.log(ingredient)
     if (!aisleGroups[ingredient.aisle]) {
       aisleGroups[ingredient.aisle] = [];
     }
@@ -100,8 +98,3 @@ export function generateShoppingList() {
     copyShoppingButton.style.display = 'none'; // Hide the button
   }
 }
-
-// Add change event listeners to the checkboxes
-document.querySelectorAll('input[name="dinner"]').forEach((checkbox) => {
-  checkbox.addEventListener("change", generateShoppingList);
-});

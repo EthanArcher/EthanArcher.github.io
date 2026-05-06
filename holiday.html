@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Holiday Map</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Holiday Map" />
@@ -21,12 +21,14 @@
       <section id="header" style="padding: 0; margin: 0">
         <div id="controls" class="content" style="display: flex; gap: 0.5em; align-items: center; padding: 0.5em 0; justify-content: center">
           <div style="display: flex; flex-direction: column">
-            <select id="countrySelect">
+            <label for="countrySelect" style="font-size: 0.75em; margin-bottom: 2px">Country</label>
+            <select id="countrySelect" aria-label="Filter by country">
               <option value="all">All countries</option>
             </select>
           </div>
           <div style="display: flex; flex-direction: column">
-            <select id="daySelect">
+            <label for="daySelect" style="font-size: 0.75em; margin-bottom: 2px">Day</label>
+            <select id="daySelect" aria-label="Filter by day">
               <option value="all">All days</option>
             </select>
           </div>

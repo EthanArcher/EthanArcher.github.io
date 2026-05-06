@@ -240,6 +240,7 @@ export const INGREDIENT_AISLES = {
   "White Chocolate": "8. Sweets",
 
   "Frozen Raspberries": "9. Freezer",
+  "Garlic Bread": "9. Freezer",
   "Vanilla Ice Cream": "9. Freezer",
 
   "Bamboo Skewers": "10. Other",
@@ -1566,7 +1567,8 @@ export const MEALS = {
       { name: "Red Wine Stock Paste", quantity: 22, unit: "g" },
       { name: "Spaghetti", quantity: 180, unit: "g" },
       { name: "Baby Spinach", quantity: 40, unit: "g" },
-      { name: "Grated Hard Italian Style Cheese", quantity: 20, unit: "g" }
+      { name: "Grated Hard Italian Style Cheese", quantity: 20, unit: "g" },
+      { name: "Garlic Bread", quantity: 1, unit: "pcs" }
     ]
   },
   "Smoky Banger Pasta Bake": {

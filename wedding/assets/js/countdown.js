@@ -1,27 +1,18 @@
-var countDownDate = new Date("Jul 11, 2021 00:00:00").getTime();
+var wedding = new Date("Jul 11, 2021");
+var now = new Date();
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+var years = now.getFullYear() - wedding.getFullYear();
+var months = now.getMonth() - wedding.getMonth();
+var days = now.getDate() - wedding.getDate();
 
-	// Get today's date and time
-	var now = new Date().getTime();
+if (days < 0) {
+	months--;
+	days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+}
+if (months < 0) {
+	years--;
+	months += 12;
+}
 
-	// Find the distance between now and the count down date
-	var distance = countDownDate - now;
-
-	// Time calculations for days, hours, minutes and seconds
-	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-	// Display the result in the element with id="demo"
-	document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-	+ minutes + "m " + seconds + "s ";
-
-	// If the count down is finished, write some text
-	if (distance < 0) {
-		clearInterval(x);
-		document.getElementById("countdown").innerHTML = "EXPIRED";
-	}
-}, 1000);
+document.getElementById("countdown").innerHTML =
+	years + " years " + months + " months " + days + " days";
